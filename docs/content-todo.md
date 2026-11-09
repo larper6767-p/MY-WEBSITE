@@ -9,6 +9,27 @@ Everything below is still needed from you. Nothing here is invented; data files 
 - A contact email, if the new pages should show any (identity.email)
 - The colophon line for the sketchbook back cover. Today the code reads a property that does not exist and the page shows the word "undefined" (data/sketchbook.json, back cover placeholder)
 
+## Home page (data/site.json, home)
+
+- The big intro heading, for example "Hello, I'm ..."
+- One sentence about what you do and enjoy
+- One or two small photos (alt text, real files in assets/)
+
+## About page (data/site.json, about)
+
+- Intro paragraph
+- The story text block (heading and paragraphs)
+- Education rows: year + school or course, plus a heading for the list
+- Interests as short tags, plus a heading
+- "Currently exploring" items, plus a heading
+- One large photo with a mono caption
+- If the selected-work gallery ever comes back, it plugs in here as another About block (gallery was dropped from the plan for now)
+
+## Beyond page (data/site.json, beyond)
+
+- One line for the sketchbook object ("Open" call to action has no extra words needed)
+- One line for the listening room object
+
 ## Works (8 entries in data/artworks.json)
 
 - Dimensions/physical size for every work. The size field is null in data/artworks.json and the spec row is hidden until you supply it

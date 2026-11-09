@@ -1,9 +1,70 @@
 # Data files
 
-- `site.json`: identity, strings, nav and social links used across pages
+- `site.json`: identity, strings, nav and social links used across pages. `nav` feeds no renderer directly: nav and footer are repeated in each HTML file (see the snippet below) and `nav` records the same numbers and targets for reference
 - `artworks.json`: the eight works. `accent` holds a palette token name from `css/tokens.css`. `year` is the numeric year shown; `meta` is the display string. `size` is null until real dimensions are supplied; the renderer hides the spec row while it is null
 - `sketchbook.json`: covers plus six spreads, in the same work order as `artworks.json`. A spread holds one artwork (`artworkId`) or a group (`artworkIds`, spread 5 groups three paper sketches). Every work keeps its own plate number in the index either way
 - `tracks.json`: empty until tracks are supplied
+
+## Shared nav and footer
+
+Every HTML page repeats this markup so pages work without JavaScript. Links are relative, never leading with "/", because the preview serves the site under a subpath.
+
+```html
+<nav class="site-nav" aria-label="Main">
+  <p class="site-nav-word">carpediemsnutz</p>
+  <ul class="site-nav-list">
+    <li><a href="index.html">01 Home</a></li>
+    <li><a href="about/">02 About</a></li>
+    <li><a href="beyond/">03 Beyond</a></li>
+  </ul>
+</nav>
+```
+
+Keep `aria-current="page"` on the link for the page being viewed. The sketchbook and listening room pages mark `03 Beyond` as current. Hrefs are written for a page one level deep (use `../about/` there, plain `../` for the sketchbook link).
+
+```html
+<footer class="footer">
+  <p class="footer-line">[PLACEHOLDER: copyright line]</p>
+  <div class="footer-social" id="social" aria-label="Social media"></div>
+</footer>
+```
+
+The social links are filled by the page's small script from `site.json`.
+
+## Page-shaped keys in site.json
+
+All still `[PLACEHOLDER: ...]` where personal. `href` values are written as the final public paths, without a leading slash; each page resolves them for its own depth.
+
+```json
+"nav": [ { "label": "Home", "number": "01", "href": "index.html" }, ... ]
+"home": {
+  "heading": "[PLACEHOLDER: Hello, I'm name.]",
+  "line": "[PLACEHOLDER: one sentence about what I do and enjoy]",
+  "photos": [ { "src": null, "alt": "[PLACEHOLDER: ...]", "width": 480, "height": 600 } ]
+}
+"about": {
+  "heading": "About",
+  "intro": "[PLACEHOLDER: one short intro paragraph]",
+  "blocks": [
+    { "type": "text",   "heading": "...", "paragraphs": ["..."] },
+    { "type": "photo",  "src": null, "alt": "...", "caption": "...", "width": 900, "height": 600 },
+    { "type": "list",   "heading": "...", "rows": [ { "year": "...", "label": "..." } ] },
+    { "type": "tags",   "heading": "...", "items": ["..."] }
+  ]
+}
+"beyond": {
+  "heading": "Beyond the portfolio.",
+  "subline": "Two little corners of my world.",
+  "sketchbook": { "title": "The sketchbook", "blurb": "[PLACEHOLDER: short description]" },
+  "listening": { "title": "The listening room", "blurb": "[PLACEHOLDER: short description]" }
+}
+```
+
+Adding an About block later is a data change only: the About page renders `type` generically.
+
+## Asset paths
+
+Image paths inside the JSON files are site-root relative (`assets/78.png`). The sketchbook renderer sits one folder down, so it prefixes `../` when building tags (this is what makes everything work under the `/redesign/` subpath).
 
 ## Page elements
 
