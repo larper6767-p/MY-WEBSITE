@@ -368,7 +368,11 @@
     var s = spreadIndexOfArtwork(workIndex);
     if (s < 0) return;
     var target = leafIndex(s);
-    if (flip.getCurrentPageIndex() !== target) flip.turnToPage(target);
+    if (flip.getCurrentPageIndex() !== target) {
+      flip.turnToPage(target);
+      sync();
+      updateHash();
+    }
   }
 
   /* ---- controls, counter, rail state ---- */
@@ -406,6 +410,48 @@
 
   var artworksOrder = [];   /* work objects by index, for group spread labels */
 
+  /* ---- direct links: #cover, #spread-N, #back ---- */
+  function leafForHash(hash) {
+    var raw = (hash || '').replace(/^#+/, '').toLowerCase();
+    if (raw === '' || raw === 'cover') return 0;
+    if (raw === 'back') return 1 + spreads.length * 2;
+    var m = raw.match(/^spread-(\d+)$/);
+    if (!m) return null;
+    var n = parseInt(m[1], 10);
+    if (!(n >= 1 && n <= spreads.length)) return null;
+    return 1 + (n - 1) * 2;
+  }
+
+  function hashForPage(p) {
+    if (p <= 0) return '#cover';
+    if (p >= pageCount - 1) return '#back';
+    return '#spread-' + (Math.floor((p - 1) / 2) + 1);
+  }
+
+  /* writes only when the value changes, so shared links and the
+     browser Back button both work without duplicate history rows */
+  var lastHash = location.hash || '';
+
+  function updateHash() {
+    if (!flip) return;
+    var h = hashForPage(flip.getCurrentPageIndex());
+    if (h === lastHash) return;
+    lastHash = h;
+    if (location.hash !== h) location.hash = h;
+  }
+
+  function onHashChange() {
+    if (!flip) return;
+    var leaf = leafForHash(location.hash);
+    if (leaf == null) return;
+    if (flip.getCurrentPageIndex() === leaf) { sync(); updateHash(); return; }
+    flip.turnToPage(leaf);
+    sync();
+    updateHash();
+  }
+
+  var bootLeaf = null;      /* leaf to open straight from a shared link */
+
   /* ---- flip init / teardown ---- */
   /* stretch sizing leaves portrait pages at 0x0 in the vendored build,
      so the phone leaf gets explicit px: the stage box at 3:4 */
@@ -427,7 +473,7 @@
   function sharedOptions(phone) {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var o = flipOptions(phone);
-    o.startPage = 0;
+    o.startPage = bootLeaf != null ? bootLeaf : 0;
     o.drawShadow = !reduce;
     o.maxShadowOpacity = reduce ? 0 : 0.35;
     o.flippingTime = reduce ? 1 : 600;   /* 0 throws inside StPageFlip */
@@ -474,7 +520,7 @@
       return;
     }
     pageCount = flip.getPageCount();
-    flip.on('flip', sync);
+    flip.on('flip', function () { sync(); updateHash(); });
     flip.on('changeState', sync);
     flip.on('changeOrientation', sync);
     sync();
@@ -536,6 +582,7 @@
     });
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keydown', onInspectGlobalKey, true);
+    window.addEventListener('hashchange', onHashChange);
 
     if (phoneMq.addEventListener) phoneMq.addEventListener('change', function () {
       if (!layoutPhone) rebuild();
@@ -575,6 +622,9 @@
       var list = ids.map(function (id) { return artIndex[id].i; });
       return { left: sp.left, right: sp.right, artworkIds: ids, artworkIdList: list };
     });
+
+    bootLeaf = leafForHash(location.hash);
+    lastHash = location.hash || '';
 
     fillShell();
     buildRail();
