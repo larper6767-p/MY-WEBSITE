@@ -611,7 +611,7 @@
   function sharedOptions(phone) {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var o = flipOptions(phone);
-    o.startPage = bootLeaf != null ? bootLeaf : 0;
+    o.startPage = (bootLeaf != null) ? bootLeaf : 1;   /* open at the first spread */
     o.drawShadow = !reduce;
     o.maxShadowOpacity = reduce ? 0 : 0.35;
     o.flippingTime = reduce ? 1 : 600;   /* 0 throws inside StPageFlip */
@@ -764,7 +764,7 @@
     coverData = sketchbook.covers;
     totalLeaves = 2 + spreads.length * 2;
 
-    bootLeaf = leafForHash(location.hash);
+    bootLeaf = location.hash ? leafForHash(location.hash) : null;
     lastHash = location.hash || '';
 
     fillShell();
