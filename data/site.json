@@ -1,0 +1,26 @@
+{
+  "identity": {
+    "name": "carpediemsnutz",
+    "wordmark": "PORTFOLIO",
+    "bio": "[PLACEHOLDER: short bio]",
+    "location": "[PLACEHOLDER: location]",
+    "email": "[PLACEHOLDER: contact email]"
+  },
+  "strings": {
+    "kicker": "some of my works · 2021—2026",
+    "blurb": "Paintings,sketches, and some notes with them.",
+    "discipline": "Paintings and sketches",
+    "range": "Works and notes, 2021–2026",
+    "sketchbookCue": "The sketchbook",
+    "metaDescription": "A sketchbook of paintings, prints and notes. Flip through it page by page."
+  },
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Sketchbook", "href": "/sketchbook/" },
+    { "label": "Listening room", "href": "/listening-room/" }
+  ],
+  "social": [
+    { "label": "Instagram", "href": "https://www.instagram.com/carpediemssnuts/" },
+    { "label": "X", "href": "https://x.com/Ramen262036" }
+  ]
+}
