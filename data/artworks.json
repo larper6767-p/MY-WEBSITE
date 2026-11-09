@@ -1,0 +1,164 @@
+{
+  "artworks": [
+    {
+      "id": "wip",
+      "title": "WIP",
+      "meta": "digital/krita · 2023/09",
+      "year": 2023,
+      "medium": "digital/krita",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#8a6f52",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/78.png",
+          "width": 1136,
+          "height": 839,
+          "alt": "WIP — digital/krita, 2023",
+          "variants": []
+        }
+      ],
+      "note": "one of my first proper portraits that i loved to paint and actually looked good spent a lot of time in this work tho the finished version was a bit dissapointing"
+    },
+    {
+      "id": "portrait",
+      "title": "portrait",
+      "meta": "digital/krita · 2026/08",
+      "year": 2026,
+      "medium": "digital/krita",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#6f5a45",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/ass.jpg",
+          "width": 2250,
+          "height": 1680,
+          "alt": "portrait — digital/krita, 2026",
+          "variants": []
+        }
+      ],
+      "note": "i painted this on a whim and was actually trying to practice just rendering skins and then ended up finishing it coz really liked the how the render turned out"
+    },
+    {
+      "id": "rei",
+      "title": "rei",
+      "meta": "digital/krita · 2026/08",
+      "year": 2026,
+      "medium": "digital/krita",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#5f6f7c",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/reiass.jpg",
+          "width": 1754,
+          "height": 2480,
+          "alt": "rei — digital/krita, 2026",
+          "variants": []
+        }
+      ],
+      "note": "i tried anime style after many years and surprinsingly it suits my style and i actually loved it will def do more"
+    },
+    {
+      "id": "sakura",
+      "title": "sakura",
+      "meta": "digital/krita · 2025/idk",
+      "year": 2025,
+      "medium": "digital/krita",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#5f6f7c",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/sakura.jpeg",
+          "width": 1331,
+          "height": 903,
+          "alt": "sakura — digital/krita, 2025",
+          "variants": []
+        }
+      ],
+      "note": "did this back in 25 and actually turned out good i got super lazy with the clothes and rendering"
+    },
+    {
+      "id": "himeno",
+      "title": "himeno",
+      "meta": "paper sketch · 2023/12",
+      "year": 2023,
+      "medium": "paper sketch",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#8a6f52",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/ass2.jpeg",
+          "width": 690,
+          "height": 611,
+          "alt": "himeno — paper sketch, 2023",
+          "variants": []
+        }
+      ],
+      "note": "i drew this back when i was in hostel in my sketchbook instead of actually studying for my board exams."
+    },
+    {
+      "id": "yanfei",
+      "title": "yanfei",
+      "meta": "paper sketch · 2023/idk",
+      "year": 2023,
+      "medium": "paper sketch",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#8a6f52",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/yanfei.jpeg",
+          "width": 881,
+          "height": 597,
+          "alt": "yanfei — paper sketch, 2023",
+          "variants": []
+        }
+      ],
+      "note": "i drew this while preparing for my 10th board instead of actually studying"
+    },
+    {
+      "id": "yoimiya",
+      "title": "yoimiya",
+      "meta": "paper sketch · 2023/idk",
+      "year": 2023,
+      "medium": "paper sketch",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#8a6f52",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/yoimiya.jpeg",
+          "width": 725,
+          "height": 620,
+          "alt": "yoimiya — paper sketch, 2023",
+          "variants": []
+        }
+      ],
+      "note": "drew this during the internet blackout and was desperate for ref during that time"
+    },
+    {
+      "id": "lillies",
+      "title": "lillies",
+      "meta": "paper sketch · 2025/idk",
+      "year": 2025,
+      "medium": "paper sketch",
+      "size": "[PLACEHOLDER: dimensions]",
+      "accent": "#8a6f52",
+      "images": [
+        {
+          "id": "plate",
+          "src": "assets/lovelillies.jpeg",
+          "width": 961,
+          "height": 639,
+          "alt": "lillies — paper sketch, 2025",
+          "variants": []
+        }
+      ],
+      "note": "well someone liked lillies"
+    }
+  ]
+}
