@@ -1,14 +1,7 @@
-/* ============================================================
-   DESIGN TOKENS
-   Single source of truth for colour, type, spacing, rules,
-   radii and layout. Consumed by base.css and the style guide.
-   No gradients, shadows or textures belong in this system.
-   ============================================================ */
+
 
 :root {
-  /* ----------------------------------------------------------
-     1. COLOUR
-     ---------------------------------------------------------- */
+  
   --paper: #F4F1EA;
   --white: #FFFFFF;
   --ink: #1B1A19;
@@ -53,12 +46,7 @@
   --rule-color: var(--ink);
   --rule-subtle: var(--stone);
 
-  /* ----------------------------------------------------------
-     2. TYPE
-     Loaded weights only:
-     Syne 700/800 · DM Sans 400/500/700
-     IBM Plex Mono 400/500 · Caveat 500
-     ---------------------------------------------------------- */
+  
   --font-display: "Syne", "Arial Black", sans-serif;
   --font-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -96,9 +84,7 @@
   --tracking-wider: 0.14em;
   --tracking-widest: 0.22em;
 
-  /* ----------------------------------------------------------
-     3. SPACE, RULES, RADII
-     ---------------------------------------------------------- */
+  
   --space-0: 0;
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -120,12 +106,7 @@
   --radius-xs: 2px;
   --radius-circle: 50%;
 
-  /* ----------------------------------------------------------
-     4. LAYOUT + BREAKPOINTS
-     Media queries use literal px because var() is invalid there.
-     These values are the canonical reference for JS and docs:
-     375 mobile, 768 tablet, 1100 rail/desktop, 1440 wide.
-     ---------------------------------------------------------- */
+  
   --bp-xs: 375px;
   --bp-sm: 480px;
   --bp-md: 768px;
@@ -137,9 +118,7 @@
   --gutter: clamp(1.25rem, 4vw, 4rem);
   --header-height: 4.5rem;
 
-  /* ----------------------------------------------------------
-     5. MOTION
-     ---------------------------------------------------------- */
+  
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --duration-fast: 140ms;
   --duration-base: 220ms;

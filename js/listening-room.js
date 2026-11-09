@@ -1,7 +1,4 @@
-/* ============================================================
-   LISTENING ROOM
-   Turntable, track selection, Spotify embeds.
-   ============================================================ */
+
 (function () {
   'use strict';
 
@@ -17,7 +14,7 @@
     });
   }
 
-  /* ---- fill shell from site.json ---- */
+  
   function fillShell(site) {
     doc.querySelectorAll('[data-fill]').forEach(function (el) {
       var parts = el.dataset.fill.split('/');
@@ -40,7 +37,7 @@
     }
   }
 
-  /* ---- token colour mapping ---- */
+  
   var TOKEN_COLORS = {
     maroon: 'var(--maroon)',
     vermilion: 'var(--vermilion)',
@@ -159,7 +156,7 @@
     });
   }
 
-  /* ---- pause toggle ---- */
+  
   function wirePause() {
     var toggle = doc.getElementById('pause-toggle');
     var record = doc.querySelector('.turntable__record');
@@ -178,7 +175,7 @@
     });
   }
 
-  /* ---- boot ---- */
+  
   Promise.all([
     fetchJSON(ROOT_PREFIX + 'data/site.json'),
     fetchJSON(ROOT_PREFIX + 'data/tracks.json')

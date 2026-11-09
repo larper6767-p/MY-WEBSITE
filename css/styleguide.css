@@ -1,9 +1,4 @@
-/* ============================================================
-   STYLE GUIDE
-   Page-specific layout for /styleguide/. Everything visual
-   comes from tokens.css and base.css; this file only arranges
-   the specimens and the contrast audit.
-   ============================================================ */
+
 
 html {
   scroll-padding-top: calc(var(--header-height) + var(--space-4));
@@ -13,9 +8,7 @@ html {
   background: var(--paper);
 }
 
-/* ------------------------------------------------------------
-   HEADER
-   ------------------------------------------------------------ */
+
 .sg-header {
   position: sticky;
   top: 0;
@@ -83,9 +76,7 @@ html {
   }
 }
 
-/* ------------------------------------------------------------
-   HERO
-   ------------------------------------------------------------ */
+
 .sg-hero {
   padding-block: clamp(3.5rem, 9vw, 8rem);
   border-bottom: var(--border-thin) solid var(--ink);
@@ -146,9 +137,7 @@ html {
   }
 }
 
-/* ------------------------------------------------------------
-   SECTION HEADINGS
-   ------------------------------------------------------------ */
+
 .sg-section {
   padding-block: var(--space-section);
   border-bottom: var(--border-thin) solid var(--rule-subtle);
@@ -213,9 +202,7 @@ html {
   margin: 0;
 }
 
-/* ------------------------------------------------------------
-   COLOUR SWATCHES
-   ------------------------------------------------------------ */
+
 .swatch-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -337,9 +324,7 @@ html {
   color: var(--ink);
 }
 
-/* ------------------------------------------------------------
-   CONTRAST TABLES
-   ------------------------------------------------------------ */
+
 .sg-table-wrap {
   overflow-x: auto;
   border-top: var(--border-thin) solid var(--ink);
@@ -384,9 +369,7 @@ html {
   opacity: 0.72;
 }
 
-/* ------------------------------------------------------------
-   TYPE SPECIMENS
-   ------------------------------------------------------------ */
+
 .specimen-list {
   border-top: var(--border-thin) solid var(--ink);
 }
@@ -461,9 +444,7 @@ html {
   overflow-wrap: anywhere;
 }
 
-/* ------------------------------------------------------------
-   BUTTONS, FOCUS, RULES
-   ------------------------------------------------------------ */
+
 .sg-demo-row {
   padding-block: var(--space-5);
   border-top: var(--border-thin) solid var(--stone);
@@ -498,9 +479,7 @@ html {
   margin-top: var(--space-6);
 }
 
-/* ------------------------------------------------------------
-   COMPONENTS
-   ------------------------------------------------------------ */
+
 .sg-component-grid {
   display: grid;
   gap: var(--space-6);
@@ -535,9 +514,7 @@ html {
   }
 }
 
-/* ------------------------------------------------------------
-   COLOUR BLOCKS
-   ------------------------------------------------------------ */
+
 .sg-blocks {
   border-bottom: var(--border-thin) solid var(--rule-subtle);
 }
@@ -584,9 +561,7 @@ html {
   }
 }
 
-/* ------------------------------------------------------------
-   FOOTER
-   ------------------------------------------------------------ */
+
 .sg-footer {
   padding-block: var(--space-6);
 }

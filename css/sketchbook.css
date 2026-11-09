@@ -1,9 +1,4 @@
-/* ============================================================
-   SKETCHBOOK SHELL
-   Colours, coordinates and fonts come from data/*.json. Sizes
-   here must stay in sync with the constants in js/sketchbook.js
-   (leaf cap 600px, portrait switch 900px, leaf ratio 3:4).
-   ============================================================ */
+
 
 .desk {
   max-width: var(--container-max);
@@ -34,9 +29,7 @@
   letter-spacing: var(--tracking-wider);
 }
 
-/* ------------------------------------------------------------
-   Layout: narrow contents rail beside the book column.
-   ------------------------------------------------------------ */
+
 .layout {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
@@ -111,9 +104,7 @@
   inset: 0;
 }
 
-/* ------------------------------------------------------------
-   Pages and elements. All values come from the data files.
-   ------------------------------------------------------------ */
+
 .page {
   background: var(--paper);
   overflow: hidden;
@@ -146,10 +137,7 @@
   cursor: zoom-in;
 }
 
-/* ------------------------------------------------------------
-   Inspector overlay. Escape closes it, focus returns to the
-   artwork that opened it, page turns are blocked while open.
-   ------------------------------------------------------------ */
+
 html.inspect-open {
   overflow: hidden;
 }
@@ -253,9 +241,7 @@ html.inspect-open {
   pointer-events: none;
 }
 
-/* ------------------------------------------------------------
-   Controls
-   ------------------------------------------------------------ */
+
 .controls {
   display: flex;
   align-items: center;
@@ -287,9 +273,7 @@ html.inspect-open {
   letter-spacing: var(--tracking-wide);
 }
 
-/* ------------------------------------------------------------
-   Footer
-   ------------------------------------------------------------ */
+
 .social {
   display: flex;
   gap: var(--space-5);
@@ -321,9 +305,7 @@ html.inspect-open {
   font-size: var(--text-xs);
 }
 
-/* ------------------------------------------------------------
-   Fallback: without the flip library the pages stack.
-   ------------------------------------------------------------ */
+
 .no-flip #book {
   position: static;
 }
@@ -339,9 +321,7 @@ html.inspect-open {
   content: none;
 }
 
-/* ------------------------------------------------------------
-   Dev-only layout check, enabled with ?layout in the URL.
-   ------------------------------------------------------------ */
+
 .layout-mode .page {
   outline: 1px solid var(--maroon);
 }
@@ -363,9 +343,7 @@ html.inspect-open {
   font-size: 9px;
 }
 
-/* ------------------------------------------------------------
-   Layout editor (dev-only, enabled with ?layout).
-   ------------------------------------------------------------ */
+
 .layout-mode .pe {
   cursor: move;
   touch-action: none;

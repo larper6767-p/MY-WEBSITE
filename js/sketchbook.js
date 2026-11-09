@@ -1,11 +1,4 @@
-/* ============================================================
-   SKETCHBOOK RENDERER — runs on /sketchbook/ only
-   Pages are built from ../data/*.json: every printed thing is a
-   positioned DOM element, so left and right pages stay
-   independent. Desktop shows spreads; phones show single
-   portrait pages. Dev layout check: any URL with ?layout.
-   Sizes that must stay in sync live in css/sketchbook.css.
-   ============================================================ */
+
 (function () {
   'use strict';
 
@@ -67,7 +60,7 @@
     return entry;
   }
 
-  /* ---- element text: literal strings win; textSource pulls from data ---- */
+  
   function resolveText(el, spread) {
     if (typeof el.text === 'string') return el.text;
     var path = el.textSource || '';
@@ -198,11 +191,7 @@
     return spread.artworkIds ? spread.artworkIds[0] : spread.artworkId;
   }
 
-  /* ------------------------------------------------------------
-     Inspector: click or Enter on any artwork opens it large.
-     Escape closes, focus returns to what was opened, and arrow
-     keys do not turn pages while it is open.
-     ------------------------------------------------------------ */
+  
   var inspect = null, inspectImg = null, inspectCap = null, inspectClose = null;
   var inspectOpen = false;
   var inspectReturn = null;   /* element to hand focus back to */
@@ -313,11 +302,7 @@
     });
   }
 
-  /* ------------------------------------------------------------
-     Layout editor (dev-only, behind ?layout): drag elements to
-     move them, drag the corner block to resize, copy the open
-     spread back out as JSON to paste into data/sketchbook.json.
-     ------------------------------------------------------------ */
+  
   var elementById = {};      /* element id -> live data object */
   var layoutClickGuard = false;
 
@@ -478,7 +463,7 @@
     return pages;
   }
 
-  /* ---- contents rail: one button per work, in artwork order ---- */
+  
   function buildRail() {
     var list = doc.getElementById('contents');
     var works = Object.keys(artIndex).map(function (id) { return artIndex[id]; });
@@ -525,7 +510,7 @@
     }
   }
 
-  /* ---- controls, counter, rail state ---- */
+  
   function sync() {
     if (!flip) return;
     var p = flip.getCurrentPageIndex();
@@ -560,7 +545,7 @@
 
   var artworksOrder = [];   /* work objects by index, for group spread labels */
 
-  /* ---- direct links: #cover, #spread-N, #back ---- */
+  
   function leafForHash(hash) {
     var raw = (hash || '').replace(/^#+/, '').toLowerCase();
     if (raw === '' || raw === 'cover') return 0;
@@ -602,7 +587,7 @@
 
   var bootLeaf = null;      /* leaf to open straight from a shared link */
 
-  /* ---- flip init / teardown ---- */
+  
   /* stretch sizing leaves portrait pages at 0x0 in the vendored build,
      so the phone leaf gets explicit px: the stage box at 3:4 */
   function flipOptions(phone) {
@@ -682,10 +667,7 @@
     initFlip(phoneAtInit());
   }
 
-  /* ---- keyboard: arrows always flip, whatever has focus.
-       The old page ignored keys while a button was focused, which is
-       why they stopped working after a click. Enter and Space still
-       activate the focused button natively, so nothing is lost. ---- */
+  
   function onKeyDown(e) {
     if (inspectOpen) return;   /* arrows never turn pages during inspection */
     if (e.defaultPrevented) return;
@@ -742,7 +724,7 @@
     });
   }
 
-  /* ---- boot ---- */
+  
   Promise.all([
     fetchJSON(ROOT_PREFIX + 'data/site.json'),
     fetchJSON(ROOT_PREFIX + 'data/artworks.json'),

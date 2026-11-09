@@ -1,8 +1,4 @@
-/* ============================================================
-   SHARED PAGE STYLES
-   Nav, footer, next strip, page frame, headings, blocks.
-   Colours, sizes and spacing come from css/tokens.css.
-   ============================================================ */
+
 
 .page-frame {
   max-width: var(--container-max);
@@ -12,7 +8,7 @@
   min-height: 100dvh;
 }
 
-/* ---- Top navigation ---- */
+
 .site-nav {
   display: flex;
   align-items: baseline;
@@ -58,7 +54,7 @@
   text-underline-offset: 0.25em;
 }
 
-/* ---- Footer ---- */
+
 .footer {
   margin-block-start: var(--space-9);
   padding-block-start: var(--space-5);
@@ -99,7 +95,7 @@
   color: var(--maroon);
 }
 
-/* ---- Next strip ---- */
+
 .next-strip {
   margin-block-start: var(--space-7);
   padding-block-start: var(--space-5);
@@ -128,7 +124,7 @@
   font-weight: var(--weight-regular);
 }
 
-/* ---- Back to start ---- */
+
 .back-to-start {
   margin-block-start: var(--space-7);
   padding-block-start: var(--space-5);
@@ -151,7 +147,7 @@
   text-underline-offset: 0.25em;
 }
 
-/* ---- Page headings ---- */
+
 .page-heading {
   margin: 0 0 var(--space-3);
   font-family: var(--font-display);
@@ -177,7 +173,7 @@
   max-width: 42rem;
 }
 
-/* ---- Home page ---- */
+
 .home-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 240px;
@@ -259,7 +255,7 @@
   z-index: 0;
 }
 
-/* ---- About page ---- */
+
 .about-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -380,7 +376,7 @@
   border: var(--border-thin) solid var(--rule-subtle);
 }
 
-/* ---- Beyond page ---- */
+
 .beyond-heading {
   margin: 0 0 var(--space-2);
   font-family: var(--font-display);
@@ -570,7 +566,7 @@
   text-underline-offset: 0.25em;
 }
 
-/* ---- Responsive ---- */
+
 @media (max-width: 768px) {
   .home-layout {
     grid-template-columns: 1fr;

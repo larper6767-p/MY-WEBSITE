@@ -1,8 +1,4 @@
-/* ============================================================
-   SHARED PAGE SCRIPT
-   Fills data-fill attributes and social links from site.json.
-   On the About page, renders the blocks from about.blocks.
-   ============================================================ */
+
 (function () {
   'use strict';
 

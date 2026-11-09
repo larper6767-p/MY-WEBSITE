@@ -1,8 +1,4 @@
-/* ============================================================
-   STYLE GUIDE — LIVE CONTRAST AUDIT
-   Recalculates the WCAG ratios from the CSS custom properties
-   in css/tokens.css, so the reference cannot silently drift.
-   ============================================================ */
+
 (function () {
   'use strict';
 
