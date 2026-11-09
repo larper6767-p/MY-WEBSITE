@@ -309,7 +309,7 @@
     o.startPage = 0;
     o.drawShadow = !reduce;
     o.maxShadowOpacity = reduce ? 0 : 0.35;
-    o.flippingTime = reduce ? 1 : 820;   /* 0 throws inside StPageFlip */
+    o.flippingTime = reduce ? 1 : 600;   /* 0 throws inside StPageFlip */
     o.showPageCorners = true;
     o.disableFlipByClick = false;
     o.clickEventForward = true;
