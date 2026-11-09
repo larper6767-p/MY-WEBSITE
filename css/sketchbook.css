@@ -141,6 +141,71 @@
   height: 100%;
 }
 
+/* artwork images invite inspection */
+.pe-art {
+  cursor: zoom-in;
+}
+
+/* ------------------------------------------------------------
+   Inspector overlay. Escape closes it, focus returns to the
+   artwork that opened it, page turns are blocked while open.
+   ------------------------------------------------------------ */
+html.inspect-open {
+  overflow: hidden;
+}
+
+.inspect {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+}
+
+.inspect[hidden] {
+  display: none;
+}
+
+.inspect-scrim {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 78%, transparent);
+}
+
+.inspect-panel {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: min(1000px, 100%);
+  padding: var(--space-4);
+  background: var(--paper);
+  border: var(--border-thin) solid var(--rule-subtle);
+}
+
+.inspect-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.inspect-cap {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+.inspect-close {
+  align-self: flex-end;
+}
+
 .pe dl {
   margin: 0;
 }

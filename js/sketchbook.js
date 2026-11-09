@@ -103,7 +103,8 @@
     });
     /* asset paths in the data files are site-root relative */
     best = ROOT_PREFIX + best;
-    return { src: best, width: img.width, height: img.height, alt: img.alt };
+    /* full is the untouched original for the inspector */
+    return { src: best, full: ROOT_PREFIX + img.src, width: img.width, height: img.height, alt: img.alt };
   }
 
   function elementNode(el, spread, flags) {
@@ -148,6 +149,11 @@
       if (lazy) node.loading = 'lazy';
       node.decoding = 'async';
       node.style.objectFit = el.fit === 'cover' ? 'cover' : 'contain';
+      /* every artwork is inspectable, mouse or keyboard */
+      node.tabIndex = 0;
+      node.setAttribute('role', 'button');
+      node.className = 'pe-art';
+      wireInspect(node, el);
       box.appendChild(node);
     } else if (el.type === 'block') {
       box.setAttribute('aria-hidden', 'true');
@@ -178,6 +184,121 @@
   function resolveArtworkId(spread) {
     return spread.artworkIds ? spread.artworkIds[0] : spread.artworkId;
   }
+
+  /* ------------------------------------------------------------
+     Inspector: click or Enter on any artwork opens it large.
+     Escape closes, focus returns to what was opened, and arrow
+     keys do not turn pages while it is open.
+     ------------------------------------------------------------ */
+  var inspect = null, inspectImg = null, inspectCap = null, inspectClose = null;
+  var inspectOpen = false;
+  var inspectReturn = null;   /* element to hand focus back to */
+
+  function buildInspect() {
+    var wrap = doc.createElement('div');
+    wrap.className = 'inspect';
+    wrap.id = 'inspect';
+    wrap.hidden = true;
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-modal', 'true');
+    wrap.setAttribute('aria-labelledby', 'inspect-cap');
+
+    var scrim = doc.createElement('div');
+    scrim.className = 'inspect-scrim';
+    scrim.addEventListener('click', function () { closeInspect(); });
+    wrap.appendChild(scrim);
+
+    var panel = doc.createElement('figure');
+    panel.className = 'inspect-panel';
+
+    inspectImg = doc.createElement('img');
+    inspectImg.id = 'inspect-img';
+    inspectImg.decoding = 'async';
+    inspectImg.alt = '';
+    panel.appendChild(inspectImg);
+
+    inspectCap = doc.createElement('figcaption');
+    inspectCap.className = 'inspect-cap';
+    inspectCap.id = 'inspect-cap';
+    panel.appendChild(inspectCap);
+
+    inspectClose = doc.createElement('button');
+    inspectClose.type = 'button';
+    inspectClose.className = 'btn inspect-close';
+    inspectClose.textContent = 'Close';
+    inspectClose.setAttribute('aria-label', 'Close artwork inspection');
+    inspectClose.addEventListener('click', function () { closeInspect(); });
+    panel.appendChild(inspectClose);
+
+    panel.addEventListener('keydown', function (e) {
+      /* the dialog has one focusable control, so Tab stays on it */
+      if (e.key === 'Tab') e.preventDefault();
+    });
+
+    wrap.appendChild(panel);
+    doc.body.appendChild(wrap);
+    inspect = wrap;
+  }
+
+  function openInspect(el, opener) {
+    if (!inspect) buildInspect();
+    var entry = artworkOf(el.artworkId);
+    var img = imageOf(el);
+    inspectImg.src = img.full;
+    inspectImg.alt = img.alt;
+    var cap = entry.work.title;
+    if (entry.work.meta) cap += ' · ' + entry.work.meta;
+    inspectCap.textContent = cap;
+
+    inspect.hidden = false;
+    root.classList.add('inspect-open');
+    inspectOpen = true;
+    inspectReturn = opener;
+    inspectClose.focus();
+  }
+
+  function closeInspect() {
+    if (!inspectOpen) return;
+    inspect.hidden = true;
+    root.classList.remove('inspect-open');
+    inspectOpen = false;
+    if (inspectReturn && doc.contains(inspectReturn)) inspectReturn.focus();
+    inspectReturn = null;
+  }
+
+  /* Escape closes from anywhere; Tab is trapped by the dialog itself */
+  function onInspectGlobalKey(e) {
+    if (!inspectOpen) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+      closeInspect();
+    }
+  }
+
+  /* Clicking artwork must never also turn a page. The flip library
+     listens for mousedown/touchstart on its own block and decides
+     flips at release, so the gesture start is swallowed on artwork:
+     taps open the inspector, drags starting on artwork simply do
+     nothing (page areas, buttons, rail and arrow keys still turn). */
+  function wireInspect(node, el) {
+    node.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      openInspect(el, node);
+    });
+    node.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        openInspect(el, node);
+      }
+    });
+    ['mousedown', 'touchstart'].forEach(function (ev) {
+      node.addEventListener(ev, function (e) { e.stopPropagation(); });
+    });
+  }
+
 
   function pageNode(side, elements, spread, flags) {
     flags = flags || {};
@@ -370,6 +491,7 @@
        why they stopped working after a click. Enter and Space still
        activate the focused button natively, so nothing is lost. ---- */
   function onKeyDown(e) {
+    if (inspectOpen) return;   /* arrows never turn pages during inspection */
     if (e.defaultPrevented) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
@@ -413,6 +535,7 @@
       if (flip) flip.flipNext();
     });
     window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', onInspectGlobalKey, true);
 
     if (phoneMq.addEventListener) phoneMq.addEventListener('change', function () {
       if (!layoutPhone) rebuild();
