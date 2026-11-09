@@ -56,7 +56,7 @@
         { "id": "rei-plate", "type": "image", "artworkId": "rei", "imageId": "plate", "fit": "cover", "x": 0, "y": 0, "width": 100, "height": 100, "rotation": 0, "z": 1, "opacity": 1, "visible": true }
       ],
       "right": [
-        { "id": "rei-caption", "type": "caption", "textSource": "artwork/meta", "tone": "cobalt", "x": 8, "y": 10, "width": 84, "height": 4, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "left", "mobile": { "fontSize": 3 } },
+        { "id": "rei-caption", "type": "caption", "textSource": "artwork/meta", "tone": "maroon", "x": 8, "y": 10, "width": 84, "height": 4, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "left", "mobile": { "fontSize": 3 } },
         { "id": "rei-line", "type": "text", "textSource": "artwork/note", "font": "hand", "fontSize": 3.6, "rotation": -4, "x": 8, "y": 38, "width": 80, "height": 20, "z": 2, "opacity": 1, "visible": true, "align": "left", "mobile": { "fontSize": 4.6 } }
       ]
     },
@@ -90,9 +90,9 @@
     {
       "artworkId": "lillies",
       "left": [
-        { "id": "lillies-fill", "type": "block", "tone": "cobalt", "x": 0, "y": 0, "width": 100, "height": 100, "rotation": 0, "z": 0, "opacity": 1, "visible": true },
-        { "id": "lillies-title", "type": "text", "textSource": "artwork/title", "tone": "on-cobalt", "x": 8, "y": 26, "width": 84, "height": 12, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 6, "align": "left" },
-        { "id": "lillies-note", "type": "text", "textSource": "artwork/note", "tone": "on-cobalt", "x": 8, "y": 42, "width": 80, "height": 26, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.6, "align": "left", "mobile": { "fontSize": 3.4 } }
+        { "id": "lillies-fill", "type": "block", "tone": "maroon", "x": 0, "y": 0, "width": 100, "height": 100, "rotation": 0, "z": 0, "opacity": 1, "visible": true },
+        { "id": "lillies-title", "type": "text", "textSource": "artwork/title", "tone": "on-maroon", "x": 8, "y": 26, "width": 84, "height": 12, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 6, "align": "left" },
+        { "id": "lillies-note", "type": "text", "textSource": "artwork/note", "tone": "on-maroon", "x": 8, "y": 42, "width": 80, "height": 26, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.6, "align": "left", "mobile": { "fontSize": 3.4 } }
       ],
       "right": [
         { "id": "lillies-plate", "type": "image", "artworkId": "lillies", "imageId": "plate", "fit": "contain", "x": 6, "y": 12, "width": 84, "height": 66, "rotation": 0, "z": 1, "opacity": 1, "visible": true }

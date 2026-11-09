@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Listening Room — carpediemsnutz</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../vendor/fonts/syne-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../vendor/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<meta property="og:title" content="The Listening Room — carpediemsnutz">
+<meta property="og:description" content="A few songs I keep coming back to.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="../css/fonts.css">
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/pages.css?v=1">
+<link rel="stylesheet" href="../css/listening-room.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="page-frame">
+
+  <nav class="site-nav" aria-label="Main">
+    <p class="site-nav-word">carpediemsnutz</p>
+    <ul class="site-nav-list">
+      <li><a href="../">01 Home</a></li>
+      <li><a href="../#about">02 About</a></li>
+      <li><a href="../#beyond" aria-current="page">03 Beyond</a></li>
+    </ul>
+  </nav>
+
+  <main id="main" tabindex="-1">
+    <h1 class="page-heading">The Listening Room</h1>
+    <p class="page-intro">A few songs I keep coming back to.</p>
+
+    <div class="lr-layout">
+      <div class="lr-turntable-col">
+        <div class="turntable-wrap" id="turntable-wrap">
+          <div class="turntable-field" id="room-accent">
+            <svg class="turntable lr-turntable" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+              <!-- plinth -->
+              <rect x="10" y="10" width="180" height="180" rx="12" fill="var(--ink)" opacity="0.9"/>
+              <!-- platter -->
+              <circle cx="100" cy="100" r="78" fill="var(--stone)" opacity="0.3"/>
+              <!-- record -->
+              <g class="turntable__record">
+                <circle cx="100" cy="100" r="70" fill="var(--ink)"/>
+                <circle cx="100" cy="100" r="62" fill="none" stroke="var(--ink)" stroke-width="0.5" opacity="0.4"/>
+                <circle cx="100" cy="100" r="54" fill="none" stroke="var(--ink)" stroke-width="0.5" opacity="0.4"/>
+                <circle cx="100" cy="100" r="46" fill="none" stroke="var(--ink)" stroke-width="0.5" opacity="0.4"/>
+                <circle cx="100" cy="100" r="38" fill="none" stroke="var(--ink)" stroke-width="0.5" opacity="0.4"/>
+                <circle cx="100" cy="100" r="16" class="turntable__label" fill="var(--butter)"/>
+                <circle cx="100" cy="100" r="4" fill="var(--ink)"/>
+              </g>
+              <!-- tonearm -->
+              <g class="turntable__tonearm">
+                <line x1="160" y1="30" x2="120" y2="75" stroke="var(--paper)" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="160" cy="30" r="5" fill="var(--paper)"/>
+                <rect x="115" y="72" width="10" height="6" rx="2" fill="var(--paper)"/>
+              </g>
+            </svg>
+          </div>
+          <button class="pause-toggle btn" id="pause-toggle" type="button" aria-pressed="false">Pause record</button>
+        </div>
+      </div>
+
+      <div class="lr-selection">
+        <div class="album-art" id="album-art">[PLACEHOLDER: album art]</div>
+        <h2 class="track-title" id="track-title">[PLACEHOLDER: track title]</h2>
+        <p class="track-artist" id="track-artist">[PLACEHOLDER: artist]</p>
+        <p class="track-note" id="track-note">[PLACEHOLDER: my note about this song]</p>
+        <span class="mood-tag" id="mood-tag">[PLACEHOLDER: mood]</span>
+        <div class="embed-wrap" id="embed-wrap">
+          <p class="embed-placeholder">Select a track to hear a bit.</p>
+        </div>
+        <p class="live-region" id="live-region" aria-live="polite" aria-atomic="true"></p>
+      </div>
+    </div>
+
+    <div class="lr-tracklist">
+      <h2 class="block-heading">Tracks</h2>
+      <ul class="track-list" id="track-list"></ul>
+    </div>
+  </main>
+
+  <div class="back-to-start">
+    <a href="../#beyond">Back to Beyond</a>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-line">[PLACEHOLDER: copyright line]</p>
+    <div class="footer-social" id="social" aria-label="Social media"></div>
+  </footer>
+
+</div>
+
+<script src="../js/pages.js?v=2"></script>
+<script src="../js/listening-room.js?v=1"></script>
+</body>
+</html>

@@ -4,7 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sketchbook — carpediemsnutz</title>
-<meta name="description" content="A sketchbook of paintings, prints and notes. Flip through it page by page.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preload" href="../vendor/fonts/syne-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../vendor/fonts/dm-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+
+<meta property="og:title" content="Sketchbook — carpediemsnutz">
+<meta property="og:description" content="A sketchbook of paintings, prints and notes. Flip through it page by page.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 
 <link rel="stylesheet" href="../css/fonts.css">
 <link rel="stylesheet" href="../css/tokens.css">
@@ -12,6 +19,8 @@
 <link rel="stylesheet" href="../css/sketchbook.css?v=5">
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="desk">
 
@@ -22,11 +31,12 @@
     <p class="site-nav-word">carpediemsnutz</p>
     <ul class="site-nav-list">
       <li><a href="../">01 Home</a></li>
-      <li><a href="../about/">02 About</a></li>
-      <li><a href="../beyond/" aria-current="page">03 Beyond</a></li>
+      <li><a href="../#about">02 About</a></li>
+      <li><a href="../#beyond" aria-current="page">03 Beyond</a></li>
     </ul>
   </nav>
 
+  <main id="main" tabindex="-1">
   <header class="masthead">
     <h1 class="masthead-name" data-fill="identity/name">carpediemsnutz</h1>
     <p class="masthead-kicker" data-fill="strings/kicker"></p>
@@ -56,7 +66,7 @@
       <p class="hint">Click a page, drag a corner, or use the arrow keys.</p>
 
       <p class="next-strip">
-        <a class="next-strip-link" href="../beyond/">
+        <a class="next-strip-link" href="../#beyond">
           <span class="next-strip-num">Back to</span>
           <span>03 Beyond</span>
         </a>
@@ -64,6 +74,8 @@
     </div>
 
   </div>
+
+  </main>
 
   <footer class="footer">
     <p class="footer-line">[PLACEHOLDER: copyright line]</p>

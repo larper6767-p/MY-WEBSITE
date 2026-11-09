@@ -9,6 +9,7 @@
   margin-inline: auto;
   padding: var(--space-6) var(--gutter) var(--space-9);
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* ---- Top navigation ---- */
@@ -420,12 +421,8 @@
   background: var(--butter);
 }
 
-.object-field--cobalt {
-  background: var(--cobalt);
-}
-
-.object-field--cobalt .object-label-text {
-  color: var(--on-cobalt, #fff);
+.object-field--maroon {
+  background: var(--maroon);
 }
 
 /* Sketchbook book object */

@@ -30,6 +30,15 @@ Everything below is still needed from you. Nothing here is invented; data files 
 - One line for the sketchbook object ("Open" call to action has no extra words needed)
 - One line for the listening room object
 
+## Listening room (data/tracks.json)
+
+- Track titles, artists, albums
+- Spotify track links (or track IDs) for each song
+- Album art images (files in assets/)
+- Your notes for each track
+- Mood tags for each track
+- Colour pick per track (maroon, vermilion or butter)
+
 ## Works (8 entries in data/artworks.json)
 
 - Dimensions/physical size for every work. The size field is null in data/artworks.json and the spec row is hidden until you supply it
@@ -48,3 +57,7 @@ Everything below is still needed from you. Nothing here is invented; data files 
 ## Image exports
 
 See docs/export-images.md. Sizes I need exported per artwork are listed there; no new files have to be committed for the data model to work, since it falls back to the original full-size file.
+
+## Social preview
+
+- A single preview image (at least 1200x630 px) for og:image and twitter:card on all pages. Until supplied, the tags are omitted.

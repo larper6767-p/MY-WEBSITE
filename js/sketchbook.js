@@ -103,8 +103,18 @@
     });
     /* asset paths in the data files are site-root relative */
     best = ROOT_PREFIX + best;
-    /* full is the untouched original for the inspector */
-    return { src: best, full: ROOT_PREFIX + img.src, width: img.width, height: img.height, alt: img.alt };
+    /* srcset: WebP variants only (originals excluded) */
+    var srcsetParts = (img.variants || []).map(function (v) {
+      return ROOT_PREFIX + v.src + ' ' + v.width + 'w';
+    });
+    var srcset = srcsetParts.join(', ');
+    /* full-size source for the lightbox: largest available variant */
+    var fullSrc = ROOT_PREFIX + img.src;
+    if (img.variants && img.variants.length > 0) {
+      var largest = img.variants.reduce(function (a, b) { return b.width > a.width ? b : a; }, img.variants[0]);
+      fullSrc = ROOT_PREFIX + largest.src;
+    }
+    return { src: best, srcset: srcset, full: fullSrc, width: img.width, height: img.height, alt: img.alt };
   }
 
   function elementNode(el, spread, flags) {
@@ -146,6 +156,8 @@
       node.width = img.width;
       node.height = img.height;
       node.alt = img.alt;
+      if (img.srcset) node.srcset = img.srcset;
+      node.sizes = '(max-width: 900px) 92vw, 600px';
       if (lazy) node.loading = 'lazy';
       node.decoding = 'async';
       node.style.objectFit = el.fit === 'cover' ? 'cover' : 'contain';
@@ -611,7 +623,7 @@
   function sharedOptions(phone) {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var o = flipOptions(phone);
-    o.startPage = bootLeaf != null ? bootLeaf : 0;
+    o.startPage = (bootLeaf != null) ? bootLeaf : 1;   /* open at the first spread */
     o.drawShadow = !reduce;
     o.maxShadowOpacity = reduce ? 0 : 0.35;
     o.flippingTime = reduce ? 1 : 600;   /* 0 throws inside StPageFlip */
@@ -764,7 +776,7 @@
     coverData = sketchbook.covers;
     totalLeaves = 2 + spreads.length * 2;
 
-    bootLeaf = leafForHash(location.hash);
+    bootLeaf = location.hash ? leafForHash(location.hash) : null;
     lastHash = location.hash || '';
 
     fillShell();

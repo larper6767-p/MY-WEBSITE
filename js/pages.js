@@ -12,7 +12,8 @@
     /* pages sit at the site root or one level down */
     return location.pathname.indexOf('/about/') >= 0 ||
            location.pathname.indexOf('/beyond/') >= 0 ||
-           location.pathname.indexOf('/sketchbook/') >= 0
+           location.pathname.indexOf('/sketchbook/') >= 0 ||
+           location.pathname.indexOf('/listening-room/') >= 0
       ? '../' : '';
   })();
 
@@ -37,6 +38,7 @@
 
     var social = doc.getElementById('social');
     if (social && site.social) {
+      social.innerHTML = '';
       site.social.forEach(function (s) {
         var a = doc.createElement('a');
         a.className = 'social-link';
@@ -148,9 +150,59 @@
     });
   }
 
+  function initScrollSpy() {
+    var navLinks = doc.querySelectorAll('.site-nav-list a[href^="#"]');
+    if (navLinks.length === 0) return;
+    var sections = [];
+    navLinks.forEach(function (link) {
+      var id = link.getAttribute('href').replace('#', '');
+      var sec = doc.getElementById(id);
+      if (sec) sections.push({ el: sec, link: link });
+    });
+    if (sections.length === 0) return;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* smooth scroll on nav click, unless reduced motion */
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var id = link.getAttribute('href').replace('#', '');
+        var target = doc.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        if (reduce) {
+          target.scrollIntoView();
+        } else {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* scroll-spy */
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          navLinks.forEach(function (link) {
+            if (link.getAttribute('href') === '#' + id) {
+              link.setAttribute('aria-current', 'page');
+            } else {
+              link.removeAttribute('aria-current');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+
+    sections.forEach(function (s) {
+      observer.observe(s.el);
+    });
+  }
+
   fetchJSON(ROOT_PREFIX + 'data/site.json').then(function (site) {
     fillShell(site);
     renderAboutBlocks(site.about);
+    initScrollSpy();
   }).catch(function (err) {
     console.error(err);
   });
