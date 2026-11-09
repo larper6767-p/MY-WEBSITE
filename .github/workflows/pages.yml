@@ -1,4 +1,8 @@
-name: Branch preview
+name: Publish site
+
+# main goes to the site root, redesign to /redesign/.
+# The file lives on redesign, so redesign pushes (or a manual
+# run) rebuild both copies. main itself is never modified here.
 
 on:
   push:
@@ -19,32 +23,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out branch
+      - name: Check out main for the site root
         uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
 
-      - name: Assemble the branch preview
+      - name: Check out redesign for the preview
+        uses: actions/checkout@v4
+        with:
+          ref: redesign
+          path: redesign
+
+      - name: Assemble the published tree
         run: |
           mkdir -p _site/redesign
-          tar --exclude='./.git' --exclude='./.github' --exclude='./_site' -cf - . | tar -xf - -C _site/redesign
-          cat > _site/index.html <<'HTML'
-          <!doctype html>
-          <html lang="en">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta http-equiv="refresh" content="0; url=./redesign/">
-            <title>Redesign preview</title>
-          </head>
-          <body>
-            <p><a href="./redesign/">Open the redesign preview &rarr;</a></p>
-          </body>
-          </html>
-          HTML
+          # only tracked repo files may reach the public site
+          tar --exclude='./.git' --exclude='./.github' --exclude='./rules.md' -C main -cf - . | tar -C _site -xf -
+          tar --exclude='./.git' --exclude='./.github' --exclude='./rules.md' -C redesign -cf - . | tar -C _site/redesign -xf -
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload the preview artifact
+      - name: Upload the site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
