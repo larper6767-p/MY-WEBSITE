@@ -1,0 +1,51 @@
+{
+  "identity": {
+    "name": "carpediemsnutz",
+    "wordmark": "PORTFOLIO",
+    "bio": "[PLACEHOLDER: short bio]",
+    "location": "[PLACEHOLDER: location]",
+    "email": "[PLACEHOLDER: contact email]"
+  },
+  "strings": {
+    "kicker": "some of my works · 2021—2026",
+    "blurb": "Paintings,sketches, and some notes with them.",
+    "discipline": "Paintings and sketches",
+    "range": "Works and notes, 2021–2026",
+    "sketchbookCue": "The sketchbook",
+    "metaDescription": "A sketchbook of paintings, prints and notes. Flip through it page by page."
+  },
+  "nav": [
+    { "label": "Home", "number": "01", "href": "index.html" },
+    { "label": "About", "number": "02", "href": "about/" },
+    { "label": "Beyond", "number": "03", "href": "beyond/" }
+  ],
+  "home": {
+    "heading": "[PLACEHOLDER: Hello, I'm name.]",
+    "line": "[PLACEHOLDER: one sentence about what I do and enjoy]",
+    "photos": [
+      { "src": null, "alt": "[PLACEHOLDER: home photo 1]", "width": 480, "height": 600 },
+      { "src": null, "alt": "[PLACEHOLDER: home photo 2]", "width": 480, "height": 600 }
+    ]
+  },
+  "about": {
+    "heading": "About",
+    "intro": "[PLACEHOLDER: one short intro paragraph]",
+    "blocks": [
+      { "type": "text", "heading": "[PLACEHOLDER: story heading]", "paragraphs": ["[PLACEHOLDER: short story]"] },
+      { "type": "photo", "src": null, "alt": "[PLACEHOLDER: about photo]", "caption": "[PLACEHOLDER: photo caption]", "width": 900, "height": 600 },
+      { "type": "list", "heading": "[PLACEHOLDER: education heading]", "rows": [ { "year": "[PLACEHOLDER: year]", "label": "[PLACEHOLDER: school or course]" } ] },
+      { "type": "tags", "heading": "[PLACEHOLDER: interests heading]", "items": ["[PLACEHOLDER: interest]"] },
+      { "type": "tags", "heading": "[PLACEHOLDER: currently exploring heading]", "items": ["[PLACEHOLDER: exploring]"] }
+    ]
+  },
+  "beyond": {
+    "heading": "Beyond the portfolio.",
+    "subline": "Two little corners of my world.",
+    "sketchbook": { "title": "The sketchbook", "blurb": "[PLACEHOLDER: short description]" },
+    "listening": { "title": "The listening room", "blurb": "[PLACEHOLDER: short description]" }
+  },
+  "social": [
+    { "label": "Instagram", "href": "https://www.instagram.com/carpediemssnuts/" },
+    { "label": "X", "href": "https://x.com/Ramen262036" }
+  ]
+}

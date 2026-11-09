@@ -1,0 +1,102 @@
+{
+  "phoneMode": "single-page-portrait",
+  "fallbackMode": "static-gallery",
+  "shadows": {
+    "turn": true,
+    "gutter": "soft"
+  },
+  "covers": {
+    "front": {
+      "id": "front-cover",
+      "elements": [
+        { "id": "cover-front-name", "type": "text", "textSource": "site/identity/name", "x": 6, "y": 10, "width": 88, "height": 14, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 7, "align": "left", "mobile": { "fontSize": 9 } },
+        { "id": "cover-front-kicker", "type": "text", "textSource": "site/strings/kicker", "x": 6, "y": 25, "width": 88, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.4, "align": "left", "mobile": { "fontSize": 3.2 } },
+        { "id": "cover-front-photo", "type": "block", "tone": "stone", "x": 28, "y": 36, "width": 66, "height": 42, "rotation": 0, "z": 1, "opacity": 1, "visible": true },
+        { "id": "cover-front-photo-label", "type": "caption", "text": "[PLACEHOLDER: photo]", "x": 28, "y": 54, "width": 66, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "center" },
+        { "id": "cover-front-stamp", "type": "stamp", "text": "Vol. 01", "tone": "butter", "x": 20, "y": 28, "width": 26, "height": 8, "rotation": -2, "z": 3, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.6, "align": "center" },
+        { "id": "cover-front-hint", "type": "caption", "text": "Open", "x": 6, "y": 84, "width": 40, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.4, "align": "left", "mobile": { "fontSize": 3.4 } }
+      ]
+    },
+    "back": {
+      "id": "back-cover",
+      "elements": [
+        { "id": "cover-back-colophon", "type": "caption", "text": "Colophon", "x": 6, "y": 34, "width": 88, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.2, "align": "left" },
+        { "id": "cover-back-line", "type": "text", "text": "8 works, documented and annotated.", "x": 6, "y": 44, "width": 88, "height": 8, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.8, "align": "left" },
+        { "id": "cover-back-placeholder", "type": "text", "text": "[PLACEHOLDER: colophon line — the current site shows the word undefined here]", "x": 6, "y": 52, "width": 88, "height": 12, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.4, "align": "left" }
+      ]
+    }
+  },
+  "spreads": [
+    {
+      "artworkId": "wip",
+      "left": [
+        { "id": "wip-plate", "type": "image", "artworkId": "wip", "imageId": "plate", "fit": "contain", "x": 10, "y": 14, "width": 76, "height": 58, "rotation": 0, "z": 1, "opacity": 1, "visible": true },
+        { "id": "wip-caption", "type": "caption", "textSource": "artwork/meta", "x": 10, "y": 76, "width": 76, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "left", "mobile": { "fontSize": 3 } }
+      ],
+      "right": [
+        { "id": "wip-title", "type": "text", "textSource": "artwork/title", "tone": "maroon", "x": 10, "y": 28, "width": 60, "height": 9, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 4, "align": "left" },
+        { "id": "wip-note", "type": "text", "textSource": "artwork/note", "x": 10, "y": 42, "width": 68, "height": 30, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.4, "align": "left", "mobile": { "fontSize": 3.2 } }
+      ]
+    },
+    {
+      "artworkId": "portrait",
+      "left": [
+        { "id": "portrait-fill", "type": "block", "tone": "vermilion", "x": 0, "y": 0, "width": 100, "height": 100, "rotation": 0, "z": 0, "opacity": 1, "visible": true },
+        { "id": "portrait-number", "type": "text", "textSource": "artwork/index", "tone": "on-vermilion", "x": 8, "y": 16, "width": 84, "height": 22, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 16, "align": "left" },
+        { "id": "portrait-title", "type": "text", "textSource": "artwork/title", "tone": "on-vermilion", "x": 8, "y": 44, "width": 80, "height": 10, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 4.5, "align": "left" }
+      ],
+      "right": [
+        { "id": "portrait-note", "type": "text", "textSource": "artwork/note", "x": 12, "y": 18, "width": 72, "height": 22, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.6, "align": "left", "mobile": { "fontSize": 3.4 } },
+        { "id": "portrait-plate", "type": "image", "artworkId": "portrait", "imageId": "plate", "fit": "contain", "x": 12, "y": 46, "width": 72, "height": 44, "rotation": 0, "z": 1, "opacity": 1, "visible": true }
+      ]
+    },
+    {
+      "artworkId": "rei",
+      "left": [
+        { "id": "rei-plate", "type": "image", "artworkId": "rei", "imageId": "plate", "fit": "cover", "x": 0, "y": 0, "width": 100, "height": 100, "rotation": 0, "z": 1, "opacity": 1, "visible": true }
+      ],
+      "right": [
+        { "id": "rei-caption", "type": "caption", "textSource": "artwork/meta", "tone": "cobalt", "x": 8, "y": 10, "width": 84, "height": 4, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "left", "mobile": { "fontSize": 3 } },
+        { "id": "rei-line", "type": "text", "textSource": "artwork/note", "font": "hand", "fontSize": 3.6, "rotation": -4, "x": 8, "y": 38, "width": 80, "height": 20, "z": 2, "opacity": 1, "visible": true, "align": "left", "mobile": { "fontSize": 4.6 } }
+      ]
+    },
+    {
+      "artworkId": "sakura",
+      "left": [
+        { "id": "sakura-title", "type": "text", "textSource": "artwork/title", "x": 8, "y": 18, "width": 70, "height": 10, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 5, "align": "left" },
+        { "id": "sakura-note", "type": "text", "textSource": "artwork/note", "x": 8, "y": 34, "width": 80, "height": 28, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.6, "align": "left", "mobile": { "fontSize": 3.4 } }
+      ],
+      "right": [
+        { "id": "sakura-block", "type": "block", "tone": "butter", "x": 12, "y": 26, "width": 76, "height": 54, "rotation": 0, "z": 0, "opacity": 1, "visible": true },
+        { "id": "sakura-plate", "type": "image", "artworkId": "sakura", "imageId": "plate", "fit": "contain", "x": 18, "y": 36, "width": 76, "height": 54, "rotation": 0, "z": 1, "opacity": 1, "visible": true }
+      ]
+    },
+    {
+      "artworkIds": ["himeno", "yanfei", "yoimiya"],
+      "left": [
+        { "id": "sketch-himeno", "type": "image", "artworkId": "himeno", "imageId": "plate", "fit": "contain", "x": 8, "y": 10, "width": 64, "height": 46, "rotation": -2.5, "z": 1, "opacity": 1, "visible": true },
+        { "id": "sketch-yanfei", "type": "image", "artworkId": "yanfei", "imageId": "plate", "fit": "contain", "x": 22, "y": 62, "width": 70, "height": 32, "rotation": 2, "z": 1, "opacity": 1, "visible": true }
+      ],
+      "right": [
+        { "id": "sketch-yoimiya", "type": "image", "artworkId": "yoimiya", "imageId": "plate", "fit": "contain", "x": 50, "y": 10, "width": 46, "height": 44, "rotation": 1.5, "z": 1, "opacity": 1, "visible": true },
+        { "id": "num-himeno", "type": "caption", "artworkId": "himeno", "textSource": "artwork/index", "tone": "maroon", "x": 6, "y": 10, "width": 24, "height": 4, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.2, "align": "left" },
+        { "id": "note-himeno", "type": "text", "artworkId": "himeno", "textSource": "artwork/note", "x": 6, "y": 15, "width": 42, "height": 13, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.2, "align": "left", "mobile": { "fontSize": 3 } },
+        { "id": "num-yanfei", "type": "caption", "artworkId": "yanfei", "textSource": "artwork/index", "tone": "maroon", "x": 6, "y": 31, "width": 24, "height": 4, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.2, "align": "left" },
+        { "id": "note-yanfei", "type": "text", "artworkId": "yanfei", "textSource": "artwork/note", "x": 6, "y": 36, "width": 42, "height": 12, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.2, "align": "left", "mobile": { "fontSize": 3 } },
+        { "id": "num-yoimiya", "type": "caption", "artworkId": "yoimiya", "textSource": "artwork/index", "tone": "maroon", "x": 6, "y": 51, "width": 24, "height": 4, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.2, "align": "left" },
+        { "id": "note-yoimiya", "type": "text", "artworkId": "yoimiya", "textSource": "artwork/note", "x": 6, "y": 56, "width": 42, "height": 16, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.2, "align": "left", "mobile": { "fontSize": 3 } }
+      ]
+    },
+    {
+      "artworkId": "lillies",
+      "left": [
+        { "id": "lillies-fill", "type": "block", "tone": "cobalt", "x": 0, "y": 0, "width": 100, "height": 100, "rotation": 0, "z": 0, "opacity": 1, "visible": true },
+        { "id": "lillies-title", "type": "text", "textSource": "artwork/title", "tone": "on-cobalt", "x": 8, "y": 26, "width": 84, "height": 12, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 6, "align": "left" },
+        { "id": "lillies-note", "type": "text", "textSource": "artwork/note", "tone": "on-cobalt", "x": 8, "y": 42, "width": 80, "height": 26, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "body", "fontSize": 2.6, "align": "left", "mobile": { "fontSize": 3.4 } }
+      ],
+      "right": [
+        { "id": "lillies-plate", "type": "image", "artworkId": "lillies", "imageId": "plate", "fit": "contain", "x": 6, "y": 12, "width": 84, "height": 66, "rotation": 0, "z": 1, "opacity": 1, "visible": true }
+      ]
+    }
+  ]
+}
