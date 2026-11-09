@@ -27,6 +27,7 @@
     });
     var social = doc.getElementById('social');
     if (social && site.social) {
+      social.innerHTML = '';
       site.social.forEach(function (s) {
         var a = doc.createElement('a');
         a.className = 'social-link';
