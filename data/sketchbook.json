@@ -9,9 +9,12 @@
     "front": {
       "id": "front-cover",
       "elements": [
-        { "id": "cover-front-name", "type": "text", "textSource": "site/identity/name", "x": 6, "y": 36, "width": 88, "height": 18, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 9, "align": "left", "mobile": { "fontSize": 12 } },
-        { "id": "cover-front-kicker", "type": "text", "textSource": "site/strings/kicker", "x": 6, "y": 58, "width": 88, "height": 6, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.4, "align": "left", "mobile": { "fontSize": 3.2 } },
-        { "id": "cover-front-hint", "type": "caption", "text": "Click a page to open", "x": 6, "y": 88, "width": 88, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "left", "mobile": { "fontSize": 2.8 } }
+        { "id": "cover-front-name", "type": "text", "textSource": "site/identity/name", "x": 6, "y": 10, "width": 88, "height": 14, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "display", "fontSize": 7, "align": "left", "mobile": { "fontSize": 9 } },
+        { "id": "cover-front-kicker", "type": "text", "textSource": "site/strings/kicker", "x": 6, "y": 25, "width": 88, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.4, "align": "left", "mobile": { "fontSize": 3.2 } },
+        { "id": "cover-front-photo", "type": "block", "tone": "stone", "x": 28, "y": 36, "width": 66, "height": 42, "rotation": 0, "z": 1, "opacity": 1, "visible": true },
+        { "id": "cover-front-photo-label", "type": "caption", "text": "[PLACEHOLDER: photo]", "x": 28, "y": 54, "width": 66, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2, "align": "center" },
+        { "id": "cover-front-stamp", "type": "stamp", "text": "Vol. 01", "tone": "butter", "x": 20, "y": 28, "width": 26, "height": 8, "rotation": -2, "z": 3, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.6, "align": "center" },
+        { "id": "cover-front-hint", "type": "caption", "text": "Open", "x": 6, "y": 84, "width": 40, "height": 5, "rotation": 0, "z": 2, "opacity": 1, "visible": true, "font": "mono", "fontSize": 2.4, "align": "left", "mobile": { "fontSize": 3.4 } }
       ]
     },
     "back": {
