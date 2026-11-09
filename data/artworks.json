@@ -15,7 +15,16 @@
           "width": 1136,
           "height": 839,
           "alt": "WIP — digital/krita, 2023",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/78-480.webp",
+              "width": 480
+            },
+            {
+              "src": "assets/78-900.webp",
+              "width": 900
+            }
+          ]
         }
       ],
       "note": "one of my first proper portraits that i loved to paint and actually looked good spent a lot of time in this work tho the finished version was a bit dissapointing"
@@ -35,7 +44,20 @@
           "width": 2250,
           "height": 1680,
           "alt": "portrait — digital/krita, 2026",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/ass-480.webp",
+              "width": 480
+            },
+            {
+              "src": "assets/ass-900.webp",
+              "width": 900
+            },
+            {
+              "src": "assets/ass-1600.webp",
+              "width": 1600
+            }
+          ]
         }
       ],
       "note": "i painted this on a whim and was actually trying to practice just rendering skins and then ended up finishing it coz really liked the how the render turned out"
@@ -55,7 +77,20 @@
           "width": 1754,
           "height": 2480,
           "alt": "rei — digital/krita, 2026",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/reiass-480.webp",
+              "width": 480
+            },
+            {
+              "src": "assets/reiass-900.webp",
+              "width": 900
+            },
+            {
+              "src": "assets/reiass-1600.webp",
+              "width": 1600
+            }
+          ]
         }
       ],
       "note": "i tried anime style after many years and surprinsingly it suits my style and i actually loved it will def do more"
@@ -75,7 +110,16 @@
           "width": 1331,
           "height": 903,
           "alt": "sakura — digital/krita, 2025",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/sakura-480.webp",
+              "width": 480
+            },
+            {
+              "src": "assets/sakura-900.webp",
+              "width": 900
+            }
+          ]
         }
       ],
       "note": "did this back in 25 and actually turned out good i got super lazy with the clothes and rendering"
@@ -95,7 +139,12 @@
           "width": 690,
           "height": 611,
           "alt": "himeno — paper sketch, 2023",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/ass2-480.webp",
+              "width": 480
+            }
+          ]
         }
       ],
       "note": "i drew this back when i was in hostel in my sketchbook instead of actually studying for my board exams."
@@ -115,7 +164,12 @@
           "width": 881,
           "height": 597,
           "alt": "yanfei — paper sketch, 2023",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/yanfei-480.webp",
+              "width": 480
+            }
+          ]
         }
       ],
       "note": "i drew this while preparing for my 10th board instead of actually studying"
@@ -135,7 +189,12 @@
           "width": 725,
           "height": 620,
           "alt": "yoimiya — paper sketch, 2023",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/yoimiya-480.webp",
+              "width": 480
+            }
+          ]
         }
       ],
       "note": "drew this during the internet blackout and was desperate for ref during that time"
@@ -155,7 +214,16 @@
           "width": 961,
           "height": 639,
           "alt": "lillies — paper sketch, 2025",
-          "variants": []
+          "variants": [
+            {
+              "src": "assets/lovelillies-480.webp",
+              "width": 480
+            },
+            {
+              "src": "assets/lovelillies-900.webp",
+              "width": 900
+            }
+          ]
         }
       ],
       "note": "well someone liked lillies"
