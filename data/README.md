@@ -13,14 +13,14 @@ Every HTML page repeats this markup so pages work without JavaScript. Links are 
 <nav class="site-nav" aria-label="Main">
   <p class="site-nav-word">carpediemsnutz</p>
   <ul class="site-nav-list">
-    <li><a href="index.html">01 Home</a></li>
-    <li><a href="about/">02 About</a></li>
-    <li><a href="beyond/">03 Beyond</a></li>
+    <li><a href="#home">01 Home</a></li>
+    <li><a href="#about">02 About</a></li>
+    <li><a href="#beyond">03 Beyond</a></li>
   </ul>
 </nav>
 ```
 
-Keep `aria-current="page"` on the link for the page being viewed. The sketchbook and listening room pages mark `03 Beyond` as current. Hrefs are written for a page one level deep (use `../about/` there, plain `../` for the sketchbook link).
+The three sections live on one page, so the links are anchors. On sub-pages (sketchbook, listening room) the same nav points at `../`, `../#about` and `../#beyond`, and marks `03 Beyond` as current.
 
 ```html
 <footer class="footer">
