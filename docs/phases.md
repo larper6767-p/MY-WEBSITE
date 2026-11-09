@@ -9,7 +9,7 @@ Approved order for the branch (updated when the site structure changed to five s
 - Phase 4 Sketchbook finishing: lightbox inspect with Escape, layout mode polish, direct links to spreads — approved
 - Phase 5 Home, About and Beyond as a single scrollable page (originally three separate pages, merged), shared nav and footer, old root page retired — approved
 - Phase 6 Listening room: turntable, tracks.json playback, colour per track — built, pending approval
-- Phase 7 Polish, performance, accessibility, browser tests
+- Phase 7 Polish, performance, accessibility, browser tests — done
 - Phase 8 Deploy: only now consider merging redesign into `main`
 
 ## Dropped for now (from the handoff)

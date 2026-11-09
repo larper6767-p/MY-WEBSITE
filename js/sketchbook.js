@@ -103,17 +103,16 @@
     });
     /* asset paths in the data files are site-root relative */
     best = ROOT_PREFIX + best;
-    /* srcset: all variants plus the original at full width */
+    /* srcset: WebP variants only (originals excluded) */
     var srcsetParts = (img.variants || []).map(function (v) {
       return ROOT_PREFIX + v.src + ' ' + v.width + 'w';
     });
-    srcsetParts.push(ROOT_PREFIX + img.src + ' ' + img.width + 'w');
     var srcset = srcsetParts.join(', ');
     /* full-size source for the lightbox: largest available variant */
     var fullSrc = ROOT_PREFIX + img.src;
     if (img.variants && img.variants.length > 0) {
       var largest = img.variants.reduce(function (a, b) { return b.width > a.width ? b : a; }, img.variants[0]);
-      if (largest.width >= 900) fullSrc = ROOT_PREFIX + largest.src;
+      fullSrc = ROOT_PREFIX + largest.src;
     }
     return { src: best, srcset: srcset, full: fullSrc, width: img.width, height: img.height, alt: img.alt };
   }

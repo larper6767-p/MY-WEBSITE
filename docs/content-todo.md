@@ -57,3 +57,7 @@ Everything below is still needed from you. Nothing here is invented; data files 
 ## Image exports
 
 See docs/export-images.md. Sizes I need exported per artwork are listed there; no new files have to be committed for the data model to work, since it falls back to the original full-size file.
+
+## Social preview
+
+- A single preview image (at least 1200x630 px) for og:image and twitter:card on all pages. Until supplied, the tags are omitted.

@@ -23,6 +23,10 @@
             {
               "src": "assets/78-900.webp",
               "width": 900
+            },
+            {
+              "src": "assets/78-1136.webp",
+              "width": 1136
             }
           ]
         }
@@ -118,6 +122,10 @@
             {
               "src": "assets/sakura-900.webp",
               "width": 900
+            },
+            {
+              "src": "assets/sakura-1331.webp",
+              "width": 1331
             }
           ]
         }
@@ -143,6 +151,10 @@
             {
               "src": "assets/ass2-480.webp",
               "width": 480
+            },
+            {
+              "src": "assets/ass2-690.webp",
+              "width": 690
             }
           ]
         }
@@ -168,6 +180,10 @@
             {
               "src": "assets/yanfei-480.webp",
               "width": 480
+            },
+            {
+              "src": "assets/yanfei-881.webp",
+              "width": 881
             }
           ]
         }
@@ -193,6 +209,10 @@
             {
               "src": "assets/yoimiya-480.webp",
               "width": 480
+            },
+            {
+              "src": "assets/yoimiya-725.webp",
+              "width": 725
             }
           ]
         }
@@ -222,6 +242,10 @@
             {
               "src": "assets/lovelillies-900.webp",
               "width": 900
+            },
+            {
+              "src": "assets/lovelillies-961.webp",
+              "width": 961
             }
           ]
         }
