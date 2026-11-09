@@ -16,14 +16,12 @@
      comes from one folder up (works with the /redesign/ subpath) */
   var ROOT_PREFIX = '../';
 
-  if (new URLSearchParams(location.search).has('layout')) {
-    root.classList.add('layout-mode');
-  }
-
   /* dev-only layout check: ?layout outlines every element, and
      ?layout=phone checks the single-page phone layout on a desktop */
   var layoutParam = new URLSearchParams(location.search).get('layout');
+  var layoutMode = layoutParam !== null;
   var layoutPhone = layoutParam === 'phone';
+  if (layoutMode) root.classList.add('layout-mode');
   if (layoutPhone) root.classList.add('layout-phone');
 
   /* max leaf width must stay .book-stage max-width / 2 in css/sketchbook.css */
@@ -43,6 +41,8 @@
   var pageCount = 0;
   var book = null;
   var railButtons = [];      /* one per work, in artwork order */
+  var coverData = null;      /* { front: {id, elements}, back: {...} } */
+  var totalLeaves = 0;       /* 2 + 2 per spread, known before flip init */
 
   var phoneMq = window.matchMedia('(max-width: 900px)');
 
@@ -178,6 +178,7 @@
       p.textContent = resolveText(el, spread);
       box.appendChild(p);
     }
+    wireLayoutDrag(box, el);
     return box;
   }
 
@@ -283,6 +284,7 @@
      nothing (page areas, buttons, rail and arrow keys still turn). */
   function wireInspect(node, el) {
     node.addEventListener('click', function (e) {
+      if (layoutClickGuard) { layoutClickGuard = false; return; }
       e.preventDefault();
       e.stopPropagation();
       openInspect(el, node);
@@ -297,6 +299,142 @@
     ['mousedown', 'touchstart'].forEach(function (ev) {
       node.addEventListener(ev, function (e) { e.stopPropagation(); });
     });
+  }
+
+  /* ------------------------------------------------------------
+     Layout editor (dev-only, behind ?layout): drag elements to
+     move them, drag the corner block to resize, copy the open
+     spread back out as JSON to paste into data/sketchbook.json.
+     ------------------------------------------------------------ */
+  var elementById = {};      /* element id -> live data object */
+  var layoutClickGuard = false;
+
+  function roundHalf(v) {
+    return Math.round(v * 2) / 2;
+  }
+
+  function clampPct(v, min, max) {
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function applyGeometry(box, el) {
+    var st = box.style;
+    st.left = el.x + '%';
+    st.top = el.y + '%';
+    st.width = el.width + '%';
+    st.height = el.height + '%';
+  }
+
+  function wireLayoutDrag(box, el) {
+    if (!layoutMode || elementById[el.id]) return;
+    elementById[el.id] = el;
+
+    var handle = doc.createElement('span');
+    handle.className = 'pe-resize';
+    handle.title = 'Resize';
+    box.appendChild(handle);
+
+    function begin(e, resizing) {
+      if (e.button != null && e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var page = box.closest('.page-inner') || box.parentElement;
+      var pr = page.getBoundingClientRect();
+      var startX = e.clientX;
+      var startY = e.clientY;
+      var orig = { x: el.x, y: el.y, w: el.width, h: el.height };
+      var moved = false;
+      box.classList.add('pe-drag');
+
+      var move = function (ev) {
+        var dxPct = (ev.clientX - startX) / pr.width * 100;
+        var dyPct = (ev.clientY - startY) / pr.height * 100;
+        if (ev.clientX !== startX || ev.clientY !== startY) moved = true;
+        if (resizing) {
+          el.width = clampPct(roundHalf(orig.w + dxPct), 4, 100);
+          el.height = clampPct(roundHalf(orig.h + dyPct), 4, 100);
+        } else {
+          el.x = clampPct(roundHalf(orig.x + dxPct), -el.width / 2, 100 - el.width / 2);
+          el.y = clampPct(roundHalf(orig.y + dyPct), -el.height / 2, 100 - el.height / 2);
+        }
+        applyGeometry(box, el);
+      };
+      var up = function () {
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', up);
+        window.removeEventListener('pointercancel', up);
+        box.classList.remove('pe-drag');
+        if (moved) {
+          layoutClickGuard = true;
+          setTimeout(function () { layoutClickGuard = false; }, 80);
+        }
+      };
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', up);
+      window.addEventListener('pointercancel', up);
+    }
+
+    box.addEventListener('pointerdown', function (e) { begin(e, false); });
+    handle.addEventListener('pointerdown', function (e) {
+      e.stopPropagation();
+      begin(e, true);
+    });
+  }
+
+  function copySpreadJSON() {
+    var p = flip ? flip.getCurrentPageIndex() : 0;
+    var payload = null;
+    if (p <= 0) {
+      payload = { front: coverData.front };
+    } else if (p >= totalLeaves - 1) {
+      payload = { back: coverData.back };
+    } else {
+      var s = Math.floor((p - 1) / 2);
+      var sp = spreads[s];
+      payload = {};
+      if (sp.artworkId != null) payload.artworkId = sp.artworkId;
+      if (sp.artworkIds != null) payload.artworkIds = sp.artworkIds;
+      payload.left = sp.left;
+      payload.right = sp.right;
+    }
+    var text = JSON.stringify(payload, null, 2);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        toast('Copied the open spread as JSON.');
+      }, function () {
+        console.log(text);
+        toast('Clipboard was blocked; the JSON is on the browser console.');
+      });
+    } else {
+      console.log(text);
+      toast('No clipboard API; the JSON is on the browser console.');
+    }
+  }
+
+  function toast(msg) {
+    var notice = doc.getElementById('notice');
+    if (!notice) return;
+    notice.hidden = false;
+    notice.textContent = msg;
+    setTimeout(function () { notice.hidden = true; }, 3000);
+  }
+
+  function buildLayoutToolbar() {
+    if (!layoutMode) return;
+    var bar = doc.createElement('div');
+    bar.className = 'layout-toolbar';
+    var tip = doc.createElement('p');
+    tip.className = 'layout-tip';
+    tip.textContent = 'Layout: drag to move · corner block resizes · arrows turn pages';
+    var copy = doc.createElement('button');
+    copy.type = 'button';
+    copy.className = 'btn';
+    copy.id = 'copy-json';
+    copy.textContent = 'Copy spread JSON';
+    copy.addEventListener('click', copySpreadJSON);
+    bar.appendChild(tip);
+    bar.appendChild(copy);
+    doc.body.appendChild(bar);
   }
 
 
@@ -478,9 +616,9 @@
     o.maxShadowOpacity = reduce ? 0 : 0.35;
     o.flippingTime = reduce ? 1 : 600;   /* 0 throws inside StPageFlip */
     o.showPageCorners = true;
-    o.disableFlipByClick = false;
+    o.disableFlipByClick = layoutMode;
     o.clickEventForward = true;
-    o.useMouseEvents = true;
+    o.useMouseEvents = !layoutMode;
     o.mobileScrollSupport = true;
     o.swipeDistance = 30;
     o.startZIndex = 0;
@@ -620,8 +758,11 @@
       var ids = sp.artworkIds || [sp.artworkId];
       ids.forEach(function (id) { artworkOf(id); });
       var list = ids.map(function (id) { return artIndex[id].i; });
-      return { left: sp.left, right: sp.right, artworkIds: ids, artworkIdList: list };
+      return { left: sp.left, right: sp.right, artworkIds: ids, artworkIdList: list, artworkId: sp.artworkId };
     });
+
+    coverData = sketchbook.covers;
+    totalLeaves = 2 + spreads.length * 2;
 
     bootLeaf = leafForHash(location.hash);
     lastHash = location.hash || '';
@@ -629,6 +770,7 @@
     fillShell();
     buildRail();
     wireControls();
+    buildLayoutToolbar();
     freshBook();
     initFlip(phoneAtInit());
   }).catch(function (err) {

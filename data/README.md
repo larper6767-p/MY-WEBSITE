@@ -72,6 +72,10 @@ The book writes the open position into the URL hash on every settled turn, so or
 
 An unknown hash is ignored and the book opens at the cover.
 
+## Layout editor (dev only)
+
+Append `?layout` to the sketchbook URL to draw outlines on every element and enable drag-to-move and corner-resize handles. A "Copy spread JSON" button dumps the open spread (or cover) as JSON you can paste back into `data/sketchbook.json`. The editor is not part of the public site.
+
 ## Asset paths
 
 Image paths inside the JSON files are site-root relative (`assets/78.png`). The sketchbook renderer sits one folder down, so it prefixes `../` when building tags (this is what makes everything work under the `/redesign/` subpath).

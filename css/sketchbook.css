@@ -364,8 +364,52 @@ html.inspect-open {
 }
 
 /* ------------------------------------------------------------
-   Responsive
+   Layout editor (dev-only, enabled with ?layout).
    ------------------------------------------------------------ */
+.layout-mode .pe {
+  cursor: move;
+  touch-action: none;
+}
+
+.layout-mode .pe.pe-drag {
+  outline: 2px solid var(--vermilion);
+}
+
+.pe-resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--vermilion);
+  cursor: nwse-resize;
+  z-index: 5;
+}
+
+.layout-toolbar {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  z-index: 40;
+  background: var(--paper);
+  border: var(--border-thin) solid var(--rule-subtle);
+  padding: var(--space-2) var(--space-3);
+}
+
+.layout-toolbar .btn {
+  min-height: 2.75rem;
+}
+
+.layout-tip {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+}
 @media (max-width: 1100px) {
   .layout {
     grid-template-columns: 1fr;
