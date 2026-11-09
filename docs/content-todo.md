@@ -11,7 +11,7 @@ Everything below is still needed from you. Nothing here is invented; data files 
 
 ## Works (8 entries in data/artworks.json)
 
-- Dimensions/physical size for every work. The old site left these fields empty, the new data file carries a placeholder per work
+- Dimensions/physical size for every work. The size field is null in data/artworks.json and the spec row is hidden until you supply it
 - Alt text. Each image currently uses the auto-generated "title — medium, year" string; a real one-sentence description per image reads better
 - Observation on "WIP": if it stayed unfinished, say whether a title change is wanted. Kept verbatim otherwise
 

@@ -3,11 +3,11 @@
     {
       "id": "wip",
       "title": "WIP",
-      "meta": "digital/krita · 2023/09",
+      "meta": "digital/krita · 2023",
       "year": 2023,
       "medium": "digital/krita",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#8a6f52",
+      "size": null,
+      "accent": "butter",
       "images": [
         {
           "id": "plate",
@@ -23,11 +23,11 @@
     {
       "id": "portrait",
       "title": "portrait",
-      "meta": "digital/krita · 2026/08",
+      "meta": "digital/krita · 2026",
       "year": 2026,
       "medium": "digital/krita",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#6f5a45",
+      "size": null,
+      "accent": "butter",
       "images": [
         {
           "id": "plate",
@@ -43,11 +43,11 @@
     {
       "id": "rei",
       "title": "rei",
-      "meta": "digital/krita · 2026/08",
+      "meta": "digital/krita · 2026",
       "year": 2026,
       "medium": "digital/krita",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#5f6f7c",
+      "size": null,
+      "accent": "cobalt",
       "images": [
         {
           "id": "plate",
@@ -63,11 +63,11 @@
     {
       "id": "sakura",
       "title": "sakura",
-      "meta": "digital/krita · 2025/idk",
+      "meta": "digital/krita · 2025",
       "year": 2025,
       "medium": "digital/krita",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#5f6f7c",
+      "size": null,
+      "accent": "cobalt",
       "images": [
         {
           "id": "plate",
@@ -83,11 +83,11 @@
     {
       "id": "himeno",
       "title": "himeno",
-      "meta": "paper sketch · 2023/12",
+      "meta": "paper sketch · 2023",
       "year": 2023,
       "medium": "paper sketch",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#8a6f52",
+      "size": null,
+      "accent": "butter",
       "images": [
         {
           "id": "plate",
@@ -103,11 +103,11 @@
     {
       "id": "yanfei",
       "title": "yanfei",
-      "meta": "paper sketch · 2023/idk",
+      "meta": "paper sketch · 2023",
       "year": 2023,
       "medium": "paper sketch",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#8a6f52",
+      "size": null,
+      "accent": "butter",
       "images": [
         {
           "id": "plate",
@@ -123,11 +123,11 @@
     {
       "id": "yoimiya",
       "title": "yoimiya",
-      "meta": "paper sketch · 2023/idk",
+      "meta": "paper sketch · 2023",
       "year": 2023,
       "medium": "paper sketch",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#8a6f52",
+      "size": null,
+      "accent": "butter",
       "images": [
         {
           "id": "plate",
@@ -143,11 +143,11 @@
     {
       "id": "lillies",
       "title": "lillies",
-      "meta": "paper sketch · 2025/idk",
+      "meta": "paper sketch · 2025",
       "year": 2025,
       "medium": "paper sketch",
-      "size": "[PLACEHOLDER: dimensions]",
-      "accent": "#8a6f52",
+      "size": null,
+      "accent": "butter",
       "images": [
         {
           "id": "plate",
