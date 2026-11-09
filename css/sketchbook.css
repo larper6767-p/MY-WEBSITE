@@ -1,0 +1,348 @@
+/* ============================================================
+   SKETCHBOOK SHELL
+   Colours, coordinates and fonts come from data/*.json. Sizes
+   here must stay in sync with the constants in js/sketchbook.js
+   (leaf cap 600px, portrait switch 900px, leaf ratio 3:4).
+   ============================================================ */
+
+.desk {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: var(--space-6) var(--gutter) var(--space-9);
+}
+
+.masthead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block-end: var(--space-5);
+}
+
+.masthead-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-tight);
+}
+
+.masthead-kicker {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+}
+
+/* ------------------------------------------------------------
+   Layout: narrow contents rail beside the book column.
+   ------------------------------------------------------------ */
+.layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.rail-title {
+  margin: 0;
+  padding-block-end: var(--space-2);
+  border-block-end: var(--border-thin) solid var(--rule-subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+}
+
+.rail-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rail-list button {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  gap: var(--space-2);
+  align-items: baseline;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--space-2);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink);
+  text-align: left;
+}
+
+.rail-list button:hover span:last-child {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.rail-list button[aria-current="true"] {
+  background: var(--butter);
+  font-weight: var(--weight-medium);
+}
+
+.rail-num {
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+.book-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.book-stage {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;      /* leaf cap 600px, JS LEAF_MAX * 2 */
+  margin-inline: auto;
+  aspect-ratio: 3 / 2;    /* two 3:4 leaves */
+}
+
+#book {
+  position: absolute;
+  inset: 0;
+}
+
+/* ------------------------------------------------------------
+   Pages and elements. All values come from the data files.
+   ------------------------------------------------------------ */
+.page {
+  background: var(--paper);
+  overflow: hidden;
+  container-type: size;   /* element font sizes are cqh, 1cqh = 1% page height */
+}
+
+.page-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.pe {
+  position: absolute;
+}
+
+.pe p {
+  margin: 0;
+  line-height: var(--leading-snug);
+  overflow-wrap: break-word;
+}
+
+.pe img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pe dl {
+  margin: 0;
+}
+
+.pe dt {
+  float: left;
+  clear: none;
+  margin-inline-end: 0.5em;
+}
+
+.pe dt::after {
+  content: ":";
+}
+
+.pe dd {
+  margin: 0;
+}
+
+.pe-stamp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Soft gutter shadow: the only gradient the sketchbook keeps. */
+.page[data-side="left"]::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 5%;
+  background: linear-gradient(to left, rgba(27, 26, 25, 0.12), rgba(27, 26, 25, 0));
+  pointer-events: none;
+}
+
+.page[data-side="right"]::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 5%;
+  background: linear-gradient(to right, rgba(27, 26, 25, 0.12), rgba(27, 26, 25, 0));
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   Controls
+   ------------------------------------------------------------ */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.controls .btn {
+  min-width: 4.5rem;
+}
+
+.counter {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.counter-works {
+  font-weight: var(--weight-medium);
+}
+
+.hint {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+.social {
+  display: flex;
+  gap: var(--space-5);
+  padding-block-start: var(--space-6);
+  border-block-start: var(--border-thin) solid var(--rule-subtle);
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.social-link:hover {
+  color: var(--maroon);
+  text-decoration-thickness: 2px;
+}
+
+.notice {
+  margin: var(--space-5) 0 0;
+  padding: var(--space-3) var(--space-4);
+  background: var(--stone);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+/* ------------------------------------------------------------
+   Fallback: without the flip library the pages stack.
+   ------------------------------------------------------------ */
+.no-flip #book {
+  position: static;
+}
+
+.no-flip .page {
+  position: relative;
+  width: min(88vw, 560px);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto var(--space-4);
+}
+
+.no-flip .page::after {
+  content: none;
+}
+
+/* ------------------------------------------------------------
+   Dev-only layout check, enabled with ?layout in the URL.
+   ------------------------------------------------------------ */
+.layout-mode .page {
+  outline: 1px solid var(--cobalt);
+}
+
+.layout-mode .pe {
+  outline: 1px dashed var(--vermilion);
+}
+
+.layout-mode .pe::after {
+  content: attr(data-id);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  padding: 1px 4px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .rail {
+    order: 2;
+  }
+
+  .book-column {
+    order: 1;
+  }
+}
+
+/* Phones: single portrait page instead of a spread. */
+@media (max-width: 900px) {
+  .book-stage {
+    width: min(92vw, 480px);
+    aspect-ratio: 3 / 4;
+  }
+}
+
+/* dev-only: ?layout=phone opens the same shape on a desktop */
+.layout-phone .book-stage {
+  width: min(92vw, 480px);
+  aspect-ratio: 3 / 4;
+}
+
+@media (max-width: 480px) {
+  .desk {
+    padding-block-start: var(--space-4);
+  }
+
+  .controls {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rail-list button,
+  .btn,
+  .social-link {
+    transition: none;
+  }
+}
