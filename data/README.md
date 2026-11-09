@@ -62,6 +62,20 @@ All still `[PLACEHOLDER: ...]` where personal. `href` values are written as the 
 
 Adding an About block later is a data change only: the About page renders `type` generically.
 
+## Simple sketchbook links
+
+The book writes the open position into the URL hash on every settled turn, so ordinary browser Back and Forward work and spreads can be shared:
+
+- `#cover` — front cover
+- `#spread-1` … `#spread-6` — a spread (spread numbers match the counter)
+- `#back` — back cover
+
+An unknown hash is ignored and the book opens at the cover.
+
+## Layout editor (dev only)
+
+Append `?layout` to the sketchbook URL to draw outlines on every element and enable drag-to-move and corner-resize handles. A "Copy spread JSON" button dumps the open spread (or cover) as JSON you can paste back into `data/sketchbook.json`. The editor is not part of the public site.
+
 ## Asset paths
 
 Image paths inside the JSON files are site-root relative (`assets/78.png`). The sketchbook renderer sits one folder down, so it prefixes `../` when building tags (this is what makes everything work under the `/redesign/` subpath).

@@ -141,6 +141,71 @@
   height: 100%;
 }
 
+/* artwork images invite inspection */
+.pe-art {
+  cursor: zoom-in;
+}
+
+/* ------------------------------------------------------------
+   Inspector overlay. Escape closes it, focus returns to the
+   artwork that opened it, page turns are blocked while open.
+   ------------------------------------------------------------ */
+html.inspect-open {
+  overflow: hidden;
+}
+
+.inspect {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: var(--space-5);
+}
+
+.inspect[hidden] {
+  display: none;
+}
+
+.inspect-scrim {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 78%, transparent);
+}
+
+.inspect-panel {
+  position: relative;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: min(1000px, 100%);
+  padding: var(--space-4);
+  background: var(--paper);
+  border: var(--border-thin) solid var(--rule-subtle);
+}
+
+.inspect-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 70vh;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.inspect-cap {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+}
+
+.inspect-close {
+  align-self: flex-end;
+}
+
 .pe dl {
   margin: 0;
 }
@@ -299,8 +364,52 @@
 }
 
 /* ------------------------------------------------------------
-   Responsive
+   Layout editor (dev-only, enabled with ?layout).
    ------------------------------------------------------------ */
+.layout-mode .pe {
+  cursor: move;
+  touch-action: none;
+}
+
+.layout-mode .pe.pe-drag {
+  outline: 2px solid var(--vermilion);
+}
+
+.pe-resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--vermilion);
+  cursor: nwse-resize;
+  z-index: 5;
+}
+
+.layout-toolbar {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  z-index: 40;
+  background: var(--paper);
+  border: var(--border-thin) solid var(--rule-subtle);
+  padding: var(--space-2) var(--space-3);
+}
+
+.layout-toolbar .btn {
+  min-height: 2.75rem;
+}
+
+.layout-tip {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-wide);
+}
 @media (max-width: 1100px) {
   .layout {
     grid-template-columns: 1fr;

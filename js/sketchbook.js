@@ -16,14 +16,12 @@
      comes from one folder up (works with the /redesign/ subpath) */
   var ROOT_PREFIX = '../';
 
-  if (new URLSearchParams(location.search).has('layout')) {
-    root.classList.add('layout-mode');
-  }
-
   /* dev-only layout check: ?layout outlines every element, and
      ?layout=phone checks the single-page phone layout on a desktop */
   var layoutParam = new URLSearchParams(location.search).get('layout');
+  var layoutMode = layoutParam !== null;
   var layoutPhone = layoutParam === 'phone';
+  if (layoutMode) root.classList.add('layout-mode');
   if (layoutPhone) root.classList.add('layout-phone');
 
   /* max leaf width must stay .book-stage max-width / 2 in css/sketchbook.css */
@@ -43,6 +41,8 @@
   var pageCount = 0;
   var book = null;
   var railButtons = [];      /* one per work, in artwork order */
+  var coverData = null;      /* { front: {id, elements}, back: {...} } */
+  var totalLeaves = 0;       /* 2 + 2 per spread, known before flip init */
 
   var phoneMq = window.matchMedia('(max-width: 900px)');
 
@@ -103,7 +103,8 @@
     });
     /* asset paths in the data files are site-root relative */
     best = ROOT_PREFIX + best;
-    return { src: best, width: img.width, height: img.height, alt: img.alt };
+    /* full is the untouched original for the inspector */
+    return { src: best, full: ROOT_PREFIX + img.src, width: img.width, height: img.height, alt: img.alt };
   }
 
   function elementNode(el, spread, flags) {
@@ -148,6 +149,11 @@
       if (lazy) node.loading = 'lazy';
       node.decoding = 'async';
       node.style.objectFit = el.fit === 'cover' ? 'cover' : 'contain';
+      /* every artwork is inspectable, mouse or keyboard */
+      node.tabIndex = 0;
+      node.setAttribute('role', 'button');
+      node.className = 'pe-art';
+      wireInspect(node, el);
       box.appendChild(node);
     } else if (el.type === 'block') {
       box.setAttribute('aria-hidden', 'true');
@@ -172,12 +178,265 @@
       p.textContent = resolveText(el, spread);
       box.appendChild(p);
     }
+    wireLayoutDrag(box, el);
     return box;
   }
 
   function resolveArtworkId(spread) {
     return spread.artworkIds ? spread.artworkIds[0] : spread.artworkId;
   }
+
+  /* ------------------------------------------------------------
+     Inspector: click or Enter on any artwork opens it large.
+     Escape closes, focus returns to what was opened, and arrow
+     keys do not turn pages while it is open.
+     ------------------------------------------------------------ */
+  var inspect = null, inspectImg = null, inspectCap = null, inspectClose = null;
+  var inspectOpen = false;
+  var inspectReturn = null;   /* element to hand focus back to */
+
+  function buildInspect() {
+    var wrap = doc.createElement('div');
+    wrap.className = 'inspect';
+    wrap.id = 'inspect';
+    wrap.hidden = true;
+    wrap.setAttribute('role', 'dialog');
+    wrap.setAttribute('aria-modal', 'true');
+    wrap.setAttribute('aria-labelledby', 'inspect-cap');
+
+    var scrim = doc.createElement('div');
+    scrim.className = 'inspect-scrim';
+    scrim.addEventListener('click', function () { closeInspect(); });
+    wrap.appendChild(scrim);
+
+    var panel = doc.createElement('figure');
+    panel.className = 'inspect-panel';
+
+    inspectImg = doc.createElement('img');
+    inspectImg.id = 'inspect-img';
+    inspectImg.decoding = 'async';
+    inspectImg.alt = '';
+    panel.appendChild(inspectImg);
+
+    inspectCap = doc.createElement('figcaption');
+    inspectCap.className = 'inspect-cap';
+    inspectCap.id = 'inspect-cap';
+    panel.appendChild(inspectCap);
+
+    inspectClose = doc.createElement('button');
+    inspectClose.type = 'button';
+    inspectClose.className = 'btn inspect-close';
+    inspectClose.textContent = 'Close';
+    inspectClose.setAttribute('aria-label', 'Close artwork inspection');
+    inspectClose.addEventListener('click', function () { closeInspect(); });
+    panel.appendChild(inspectClose);
+
+    panel.addEventListener('keydown', function (e) {
+      /* the dialog has one focusable control, so Tab stays on it */
+      if (e.key === 'Tab') e.preventDefault();
+    });
+
+    wrap.appendChild(panel);
+    doc.body.appendChild(wrap);
+    inspect = wrap;
+  }
+
+  function openInspect(el, opener) {
+    if (!inspect) buildInspect();
+    var entry = artworkOf(el.artworkId);
+    var img = imageOf(el);
+    inspectImg.src = img.full;
+    inspectImg.alt = img.alt;
+    var cap = entry.work.title;
+    if (entry.work.meta) cap += ' · ' + entry.work.meta;
+    inspectCap.textContent = cap;
+
+    inspect.hidden = false;
+    root.classList.add('inspect-open');
+    inspectOpen = true;
+    inspectReturn = opener;
+    inspectClose.focus();
+  }
+
+  function closeInspect() {
+    if (!inspectOpen) return;
+    inspect.hidden = true;
+    root.classList.remove('inspect-open');
+    inspectOpen = false;
+    if (inspectReturn && doc.contains(inspectReturn)) inspectReturn.focus();
+    inspectReturn = null;
+  }
+
+  /* Escape closes from anywhere; Tab is trapped by the dialog itself */
+  function onInspectGlobalKey(e) {
+    if (!inspectOpen) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      e.stopPropagation();
+      closeInspect();
+    }
+  }
+
+  /* Clicking artwork must never also turn a page. The flip library
+     listens for mousedown/touchstart on its own block and decides
+     flips at release, so the gesture start is swallowed on artwork:
+     taps open the inspector, drags starting on artwork simply do
+     nothing (page areas, buttons, rail and arrow keys still turn). */
+  function wireInspect(node, el) {
+    node.addEventListener('click', function (e) {
+      if (layoutClickGuard) { layoutClickGuard = false; return; }
+      e.preventDefault();
+      e.stopPropagation();
+      openInspect(el, node);
+    });
+    node.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        openInspect(el, node);
+      }
+    });
+    ['mousedown', 'touchstart'].forEach(function (ev) {
+      node.addEventListener(ev, function (e) { e.stopPropagation(); });
+    });
+  }
+
+  /* ------------------------------------------------------------
+     Layout editor (dev-only, behind ?layout): drag elements to
+     move them, drag the corner block to resize, copy the open
+     spread back out as JSON to paste into data/sketchbook.json.
+     ------------------------------------------------------------ */
+  var elementById = {};      /* element id -> live data object */
+  var layoutClickGuard = false;
+
+  function roundHalf(v) {
+    return Math.round(v * 2) / 2;
+  }
+
+  function clampPct(v, min, max) {
+    return Math.max(min, Math.min(max, v));
+  }
+
+  function applyGeometry(box, el) {
+    var st = box.style;
+    st.left = el.x + '%';
+    st.top = el.y + '%';
+    st.width = el.width + '%';
+    st.height = el.height + '%';
+  }
+
+  function wireLayoutDrag(box, el) {
+    if (!layoutMode || elementById[el.id]) return;
+    elementById[el.id] = el;
+
+    var handle = doc.createElement('span');
+    handle.className = 'pe-resize';
+    handle.title = 'Resize';
+    box.appendChild(handle);
+
+    function begin(e, resizing) {
+      if (e.button != null && e.button !== 0) return;
+      e.preventDefault();
+      e.stopPropagation();
+      var page = box.closest('.page-inner') || box.parentElement;
+      var pr = page.getBoundingClientRect();
+      var startX = e.clientX;
+      var startY = e.clientY;
+      var orig = { x: el.x, y: el.y, w: el.width, h: el.height };
+      var moved = false;
+      box.classList.add('pe-drag');
+
+      var move = function (ev) {
+        var dxPct = (ev.clientX - startX) / pr.width * 100;
+        var dyPct = (ev.clientY - startY) / pr.height * 100;
+        if (ev.clientX !== startX || ev.clientY !== startY) moved = true;
+        if (resizing) {
+          el.width = clampPct(roundHalf(orig.w + dxPct), 4, 100);
+          el.height = clampPct(roundHalf(orig.h + dyPct), 4, 100);
+        } else {
+          el.x = clampPct(roundHalf(orig.x + dxPct), -el.width / 2, 100 - el.width / 2);
+          el.y = clampPct(roundHalf(orig.y + dyPct), -el.height / 2, 100 - el.height / 2);
+        }
+        applyGeometry(box, el);
+      };
+      var up = function () {
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', up);
+        window.removeEventListener('pointercancel', up);
+        box.classList.remove('pe-drag');
+        if (moved) {
+          layoutClickGuard = true;
+          setTimeout(function () { layoutClickGuard = false; }, 80);
+        }
+      };
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', up);
+      window.addEventListener('pointercancel', up);
+    }
+
+    box.addEventListener('pointerdown', function (e) { begin(e, false); });
+    handle.addEventListener('pointerdown', function (e) {
+      e.stopPropagation();
+      begin(e, true);
+    });
+  }
+
+  function copySpreadJSON() {
+    var p = flip ? flip.getCurrentPageIndex() : 0;
+    var payload = null;
+    if (p <= 0) {
+      payload = { front: coverData.front };
+    } else if (p >= totalLeaves - 1) {
+      payload = { back: coverData.back };
+    } else {
+      var s = Math.floor((p - 1) / 2);
+      var sp = spreads[s];
+      payload = {};
+      if (sp.artworkId != null) payload.artworkId = sp.artworkId;
+      if (sp.artworkIds != null) payload.artworkIds = sp.artworkIds;
+      payload.left = sp.left;
+      payload.right = sp.right;
+    }
+    var text = JSON.stringify(payload, null, 2);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        toast('Copied the open spread as JSON.');
+      }, function () {
+        console.log(text);
+        toast('Clipboard was blocked; the JSON is on the browser console.');
+      });
+    } else {
+      console.log(text);
+      toast('No clipboard API; the JSON is on the browser console.');
+    }
+  }
+
+  function toast(msg) {
+    var notice = doc.getElementById('notice');
+    if (!notice) return;
+    notice.hidden = false;
+    notice.textContent = msg;
+    setTimeout(function () { notice.hidden = true; }, 3000);
+  }
+
+  function buildLayoutToolbar() {
+    if (!layoutMode) return;
+    var bar = doc.createElement('div');
+    bar.className = 'layout-toolbar';
+    var tip = doc.createElement('p');
+    tip.className = 'layout-tip';
+    tip.textContent = 'Layout: drag to move · corner block resizes · arrows turn pages';
+    var copy = doc.createElement('button');
+    copy.type = 'button';
+    copy.className = 'btn';
+    copy.id = 'copy-json';
+    copy.textContent = 'Copy spread JSON';
+    copy.addEventListener('click', copySpreadJSON);
+    bar.appendChild(tip);
+    bar.appendChild(copy);
+    doc.body.appendChild(bar);
+  }
+
 
   function pageNode(side, elements, spread, flags) {
     flags = flags || {};
@@ -247,7 +506,11 @@
     var s = spreadIndexOfArtwork(workIndex);
     if (s < 0) return;
     var target = leafIndex(s);
-    if (flip.getCurrentPageIndex() !== target) flip.turnToPage(target);
+    if (flip.getCurrentPageIndex() !== target) {
+      flip.turnToPage(target);
+      sync();
+      updateHash();
+    }
   }
 
   /* ---- controls, counter, rail state ---- */
@@ -285,6 +548,48 @@
 
   var artworksOrder = [];   /* work objects by index, for group spread labels */
 
+  /* ---- direct links: #cover, #spread-N, #back ---- */
+  function leafForHash(hash) {
+    var raw = (hash || '').replace(/^#+/, '').toLowerCase();
+    if (raw === '' || raw === 'cover') return 0;
+    if (raw === 'back') return 1 + spreads.length * 2;
+    var m = raw.match(/^spread-(\d+)$/);
+    if (!m) return null;
+    var n = parseInt(m[1], 10);
+    if (!(n >= 1 && n <= spreads.length)) return null;
+    return 1 + (n - 1) * 2;
+  }
+
+  function hashForPage(p) {
+    if (p <= 0) return '#cover';
+    if (p >= pageCount - 1) return '#back';
+    return '#spread-' + (Math.floor((p - 1) / 2) + 1);
+  }
+
+  /* writes only when the value changes, so shared links and the
+     browser Back button both work without duplicate history rows */
+  var lastHash = location.hash || '';
+
+  function updateHash() {
+    if (!flip) return;
+    var h = hashForPage(flip.getCurrentPageIndex());
+    if (h === lastHash) return;
+    lastHash = h;
+    if (location.hash !== h) location.hash = h;
+  }
+
+  function onHashChange() {
+    if (!flip) return;
+    var leaf = leafForHash(location.hash);
+    if (leaf == null) return;
+    if (flip.getCurrentPageIndex() === leaf) { sync(); updateHash(); return; }
+    flip.turnToPage(leaf);
+    sync();
+    updateHash();
+  }
+
+  var bootLeaf = null;      /* leaf to open straight from a shared link */
+
   /* ---- flip init / teardown ---- */
   /* stretch sizing leaves portrait pages at 0x0 in the vendored build,
      so the phone leaf gets explicit px: the stage box at 3:4 */
@@ -306,14 +611,14 @@
   function sharedOptions(phone) {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var o = flipOptions(phone);
-    o.startPage = 0;
+    o.startPage = bootLeaf != null ? bootLeaf : 0;
     o.drawShadow = !reduce;
     o.maxShadowOpacity = reduce ? 0 : 0.35;
-    o.flippingTime = reduce ? 1 : 820;   /* 0 throws inside StPageFlip */
+    o.flippingTime = reduce ? 1 : 600;   /* 0 throws inside StPageFlip */
     o.showPageCorners = true;
-    o.disableFlipByClick = false;
+    o.disableFlipByClick = layoutMode;
     o.clickEventForward = true;
-    o.useMouseEvents = true;
+    o.useMouseEvents = !layoutMode;
     o.mobileScrollSupport = true;
     o.swipeDistance = 30;
     o.startZIndex = 0;
@@ -353,7 +658,7 @@
       return;
     }
     pageCount = flip.getPageCount();
-    flip.on('flip', sync);
+    flip.on('flip', function () { sync(); updateHash(); });
     flip.on('changeState', sync);
     flip.on('changeOrientation', sync);
     sync();
@@ -370,6 +675,7 @@
        why they stopped working after a click. Enter and Space still
        activate the focused button natively, so nothing is lost. ---- */
   function onKeyDown(e) {
+    if (inspectOpen) return;   /* arrows never turn pages during inspection */
     if (e.defaultPrevented) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
@@ -413,6 +719,8 @@
       if (flip) flip.flipNext();
     });
     window.addEventListener('keydown', onKeyDown);
+    window.addEventListener('keydown', onInspectGlobalKey, true);
+    window.addEventListener('hashchange', onHashChange);
 
     if (phoneMq.addEventListener) phoneMq.addEventListener('change', function () {
       if (!layoutPhone) rebuild();
@@ -450,12 +758,19 @@
       var ids = sp.artworkIds || [sp.artworkId];
       ids.forEach(function (id) { artworkOf(id); });
       var list = ids.map(function (id) { return artIndex[id].i; });
-      return { left: sp.left, right: sp.right, artworkIds: ids, artworkIdList: list };
+      return { left: sp.left, right: sp.right, artworkIds: ids, artworkIdList: list, artworkId: sp.artworkId };
     });
+
+    coverData = sketchbook.covers;
+    totalLeaves = 2 + spreads.length * 2;
+
+    bootLeaf = leafForHash(location.hash);
+    lastHash = location.hash || '';
 
     fillShell();
     buildRail();
     wireControls();
+    buildLayoutToolbar();
     freshBook();
     initFlip(phoneAtInit());
   }).catch(function (err) {
