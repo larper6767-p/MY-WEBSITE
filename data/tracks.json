@@ -1,4 +1,40 @@
 {
-  "note": "[PLACEHOLDER: real tracks and embeds are added later — the room ships with an empty set until they are supplied]",
-  "tracks": []
+  "tracks": [
+    {
+      "id": "track-1",
+      "title": "[PLACEHOLDER: track title]",
+      "artist": "[PLACEHOLDER: artist]",
+      "album": "[PLACEHOLDER: album]",
+      "art": null,
+      "spotifyId": "[PLACEHOLDER: spotify track id]",
+      "note": "[PLACEHOLDER: my note about this song]",
+      "mood": "[PLACEHOLDER: mood]",
+      "color": "maroon",
+      "order": 1
+    },
+    {
+      "id": "track-2",
+      "title": "[PLACEHOLDER: track title]",
+      "artist": "[PLACEHOLDER: artist]",
+      "album": "[PLACEHOLDER: album]",
+      "art": null,
+      "spotifyId": "[PLACEHOLDER: spotify track id]",
+      "note": "[PLACEHOLDER: my note about this song]",
+      "mood": "[PLACEHOLDER: mood]",
+      "color": "vermilion",
+      "order": 2
+    },
+    {
+      "id": "track-3",
+      "title": "[PLACEHOLDER: track title]",
+      "artist": "[PLACEHOLDER: artist]",
+      "album": "[PLACEHOLDER: album]",
+      "art": null,
+      "spotifyId": "[PLACEHOLDER: spotify track id]",
+      "note": "[PLACEHOLDER: my note about this song]",
+      "mood": "[PLACEHOLDER: mood]",
+      "color": "butter",
+      "order": 3
+    }
+  ]
 }

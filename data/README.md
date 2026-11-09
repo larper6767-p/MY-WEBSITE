@@ -3,7 +3,7 @@
 - `site.json`: identity, strings, nav and social links used across pages. `nav` feeds no renderer directly: nav and footer are repeated in each HTML file (see the snippet below) and `nav` records the same numbers and targets for reference
 - `artworks.json`: the eight works. `accent` holds a palette token name from `css/tokens.css`. `year` is the numeric year shown; `meta` is the display string. `size` is null until real dimensions are supplied; the renderer hides the spec row while it is null
 - `sketchbook.json`: covers plus six spreads, in the same work order as `artworks.json`. A spread holds one artwork (`artworkId`) or a group (`artworkIds`, spread 5 groups three paper sketches). Every work keeps its own plate number in the index either way
-- `tracks.json`: empty until tracks are supplied
+- `tracks.json`: three placeholder tracks (all fields bracketed). Fields: id, title, artist, album, art (null until supplied), spotifyId (placeholder until supplied), note, mood, color (a token name: maroon, vermilion or butter), order. Selecting a track updates the room colour and loads its Spotify embed (lazy, only after selection).
 
 ## Shared nav and footer
 
