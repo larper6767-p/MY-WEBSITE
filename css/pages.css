@@ -420,12 +420,8 @@
   background: var(--butter);
 }
 
-.object-field--cobalt {
-  background: var(--cobalt);
-}
-
-.object-field--cobalt .object-label-text {
-  color: var(--on-cobalt, #fff);
+.object-field--maroon {
+  background: var(--maroon);
 }
 
 /* Sketchbook book object */

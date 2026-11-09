@@ -93,4 +93,4 @@ Image paths inside the JSON files are site-root relative (`assets/78.png`). The 
   - `spec-list`: the renderer prints medium, size and year rows and skips null rows
 - Any element may carry `artworkId` when its `textSource` refers to artwork data; a grouped spread resolves it per element
 - `textSource` tokens: `artwork/title`, `artwork/note`, `artwork/meta`, `artwork/index` (zero-padded position of the artwork), `site/identity/name`, `site/strings/kicker`
-- `tone` is a token variable name from `css/tokens.css`: colour tokens (paper, ink, white, muted, stone, maroon, vermilion, cobalt, butter) and on-colour tokens (on-vermilion, on-cobalt). On text and caption it is the text colour; on stamp and block it is the fill colour. Vermilion only at display sizes, butter never as text
+- `tone` is a token variable name from `css/tokens.css`: colour tokens (paper, ink, white, muted, stone, maroon, vermilion, butter) and on-colour tokens (on-vermilion, on-maroon, on-butter). On text and caption it is the text colour; on stamp and block it is the fill colour. Vermilion only at display sizes, butter never as text

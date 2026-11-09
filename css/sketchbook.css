@@ -343,7 +343,7 @@ html.inspect-open {
    Dev-only layout check, enabled with ?layout in the URL.
    ------------------------------------------------------------ */
 .layout-mode .page {
-  outline: 1px solid var(--cobalt);
+  outline: 1px solid var(--maroon);
 }
 
 .layout-mode .pe {
