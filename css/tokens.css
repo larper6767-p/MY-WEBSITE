@@ -1,0 +1,150 @@
+/* ============================================================
+   DESIGN TOKENS
+   Single source of truth for colour, type, spacing, rules,
+   radii and layout. Consumed by base.css and the style guide.
+   No gradients, shadows or textures belong in this system.
+   ============================================================ */
+
+:root {
+  /* ----------------------------------------------------------
+     1. COLOUR
+     ---------------------------------------------------------- */
+  --paper: #F4F1EA;
+  --white: #FFFFFF;
+  --ink: #1B1A19;
+  --muted: #B7B7B1;
+  --stone: #E2E0D9;
+
+  --maroon: #6E1423;
+  --vermilion: #E4472B;
+  --cobalt: #2B44D8;
+  --butter: #F2C94C;
+
+  /* On-colour text.
+     Every pair below is checked against WCAG 2.1.
+     Normal text = 4.5:1, large text = 3:1, non-text = 3:1.
+
+     paper       + ink        15.41:1  AAA
+     white       + ink        17.38:1  AAA
+     ink         + paper      15.41:1  AAA
+     stone       + ink        13.16:1  AAA
+     muted       + ink         8.62:1  AAA  (text on muted)
+     maroon      + white      11.75:1  AAA
+     vermilion   + black       5.23:1  AA   (ink is 4.33:1, so NOT used)
+     cobalt      + white       7.19:1  AAA
+     butter      + ink        10.95:1  AAA
+
+     `--muted` on paper is 1.79:1 and `--stone` on paper is
+     1.17:1: use both as surfaces/rules, never as body text. */
+  --on-paper: var(--ink);
+  --on-white: var(--ink);
+  --on-ink: var(--paper);
+  --on-muted: var(--ink);
+  --on-stone: var(--ink);
+  --on-maroon: var(--white);
+  --on-vermilion: #000000;
+  --on-cobalt: var(--white);
+  --on-butter: var(--ink);
+
+  /* Functional colour */
+  --focus-ring: var(--ink);
+  --selection-bg: var(--butter);
+  --selection-ink: var(--ink);
+  --rule-color: var(--ink);
+  --rule-subtle: var(--stone);
+
+  /* ----------------------------------------------------------
+     2. TYPE
+     Loaded weights only:
+     Syne 700/800 · DM Sans 400/500/700
+     IBM Plex Mono 400/500 · Caveat 500
+     ---------------------------------------------------------- */
+  --font-display: "Syne", "Arial Black", sans-serif;
+  --font-body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+  --weight-display: 800;
+
+  /* Fluid scale. Each value is a clamp(min, preferred, max) that
+     lands comfortably at 375px, 768px and 1440px. */
+  --text-2xs: clamp(0.625rem, 0.61rem + 0.06vw, 0.6875rem);
+  --text-xs: clamp(0.6875rem, 0.67rem + 0.08vw, 0.75rem);
+  --text-sm: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --text-base: clamp(0.975rem, 0.93rem + 0.18vw, 1.075rem);
+  --text-lg: clamp(1.125rem, 1.02rem + 0.4vw, 1.3rem);
+  --text-xl: clamp(1.35rem, 1.15rem + 0.85vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.15rem + 1.4vw, 2.6rem);
+  --text-3xl: clamp(1.75rem, 1.2rem + 2.4vw, 3.75rem);
+  --text-4xl: clamp(1.85rem, 1.25rem + 3.4vw, 5.25rem);
+  --text-display: clamp(2.25rem, 0.95rem + 5.5vw, 9rem);
+  --text-hand: clamp(1.35rem, 1.2rem + 0.6vw, 1.75rem);
+
+  --leading-none: 0.9;
+  --leading-tight: 1.02;
+  --leading-snug: 1.2;
+  --leading-normal: 1.6;
+  --leading-loose: 1.8;
+
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.14em;
+  --tracking-widest: 0.22em;
+
+  /* ----------------------------------------------------------
+     3. SPACE, RULES, RADII
+     ---------------------------------------------------------- */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-section: clamp(3.5rem, 9vw, 9rem);
+
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-thick: 3px;
+
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-circle: 50%;
+
+  /* ----------------------------------------------------------
+     4. LAYOUT + BREAKPOINTS
+     Media queries use literal px because var() is invalid there.
+     These values are the canonical reference for JS and docs:
+     375 mobile, 768 tablet, 1100 rail/desktop, 1440 wide.
+     ---------------------------------------------------------- */
+  --bp-xs: 375px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1100px;
+  --bp-xl: 1440px;
+
+  --container-max: 1440px;
+  --container-text: 68ch;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  --header-height: 4.5rem;
+
+  /* ----------------------------------------------------------
+     5. MOTION
+     ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+
+  /* Stamp geometry */
+  --stamp-rotation: -3deg;
+  --stamp-rotation-alt: 2deg;
+}
