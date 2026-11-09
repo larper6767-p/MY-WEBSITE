@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Design foundation — Portfolio</title>
+  <meta name="description" content="Phase 01 design foundation: colour, type, buttons, rules and flat colour blocks for the portfolio redesign.">
+  <meta name="theme-color" content="#F4F1EA">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@700;800&display=swap">
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/styleguide.css">
+</head>
+<body class="sg">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="sg-header">
+    <div class="container sg-header__inner">
+      <a class="sg-brand" href="../">
+        Portfolio <span>/ Design foundation</span>
+      </a>
+      <nav class="sg-nav" aria-label="Style guide sections">
+        <a href="#colour">Colour</a>
+        <a href="#type">Type</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#blocks">Blocks</a>
+        <a href="#components">Components</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="sg-hero">
+      <div class="container">
+        <div class="sg-hero__top">
+          <p class="caption">Phase 01 / Design foundation</p>
+          <span class="stamp stamp--maroon">Vol. 01</span>
+        </div>
+
+        <h1 class="sg-hero__title">
+          <span class="sg-hero__line">Design</span>
+          <span class="sg-hero__line"><span class="sg-mark">foundation</span></span>
+        </h1>
+
+        <div class="sg-hero__foot">
+          <p class="lead">A flat, colourful editorial system. Warm paper, hard rules, and four accents used in deliberate blocks.</p>
+          <p class="sg-hero__note">Syne / DM Sans / IBM Plex Mono / Caveat<br>Tokens: css/tokens.css</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-section" id="colour">
+      <div class="container">
+        <header class="sg-section__head">
+          <p class="sg-section__index">01</p>
+          <h2 class="sg-section__title">Colour</h2>
+          <p class="sg-section__intro">Paper and ink carry the page. Accents are flat surfaces, never gradients. Every on-colour pair below is checked against WCAG 2.1; the live audit under the swatches recalculates from the same tokens.</p>
+        </header>
+
+        <div class="swatch-grid">
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--paper); --chip-ink: var(--ink); --chip-border: var(--stone);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">15.41:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Paper</h3><code>#F4F1EA</code></div>
+              <p class="swatch__ratio"><strong>15.41:1</strong> <span class="status status--pass">AAA</span> with ink</p>
+              <p class="swatch__note">Page base. Ink on paper is the default reading pair.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--white); --chip-ink: var(--ink); --chip-border: var(--stone);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">17.38:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>White</h3><code>#FFFFFF</code></div>
+              <p class="swatch__ratio"><strong>17.38:1</strong> <span class="status status--pass">AAA</span> with ink</p>
+              <p class="swatch__note">Reserved for cards, embeds and isolated surfaces.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--ink); --chip-ink: var(--paper);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">15.41:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Ink</h3><code>#1B1A19</code></div>
+              <p class="swatch__ratio"><strong>15.41:1</strong> <span class="status status--pass">AAA</span> with paper</p>
+              <p class="swatch__note">Type, rules, primary buttons and the darkest blocks.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--muted); --chip-ink: var(--ink);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">8.62:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Muted grey</h3><code>#B7B7B1</code></div>
+              <p class="swatch__ratio"><strong>8.62:1</strong> <span class="status status--pass">AAA</span> with ink</p>
+              <p class="swatch__note">1.79:1 on paper — use for non-text detail only.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--stone); --chip-ink: var(--ink);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">13.16:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Stone</h3><code>#E2E0D9</code></div>
+              <p class="swatch__ratio"><strong>13.16:1</strong> <span class="status status--pass">AAA</span> with ink</p>
+              <p class="swatch__note">1.17:1 on paper — hairlines and structural surfaces.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--maroon); --chip-ink: var(--white);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">11.75:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Maroon</h3><code>#6E1423</code></div>
+              <p class="swatch__ratio"><strong>11.75:1</strong> <span class="status status--pass">AAA</span> with white</p>
+              <p class="swatch__note">Paper on maroon is 10.42:1. Ink is 1.48:1 — never.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--vermilion); --chip-ink: #000000;">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">5.23:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Vermilion</h3><code>#E4472B</code></div>
+              <p class="swatch__ratio"><strong>5.23:1</strong> <span class="status status--pass">AA</span> with black</p>
+              <p class="swatch__note">Ink is 4.33:1 and fails normal text. Paper and white pass large text only.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--cobalt); --chip-ink: var(--white);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">7.19:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Cobalt</h3><code>#2B44D8</code></div>
+              <p class="swatch__ratio"><strong>7.19:1</strong> <span class="status status--pass">AAA</span> with white</p>
+              <p class="swatch__note">Paper on cobalt is 6.37:1. Ink is 2.42:1 — never.</p>
+            </div>
+          </article>
+
+          <article class="swatch">
+            <div class="swatch__chip" style="--chip-bg: var(--butter); --chip-ink: var(--ink);">
+              <span class="swatch__aa">Aa</span>
+              <span class="swatch__ratio-chip">10.95:1</span>
+            </div>
+            <div class="swatch__body">
+              <div class="swatch__head"><h3>Butter</h3><code>#F2C94C</code></div>
+              <p class="swatch__ratio"><strong>10.95:1</strong> <span class="status status--pass">AAA</span> with ink</p>
+              <p class="swatch__note">White on butter is 1.59:1 — never. Use ink.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="sg-subhead">
+          <h3>Contrast audit</h3>
+          <p class="caption">WCAG 2.1 · normal 4.5:1 · large 3:1</p>
+        </div>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead>
+              <tr>
+                <th scope="col">Pair</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">AA normal</th>
+                <th scope="col">AA large</th>
+                <th scope="col">Decision</th>
+              </tr>
+            </thead>
+            <tbody data-contrast-table="primary"></tbody>
+          </table>
+        </div>
+
+        <div class="sg-subhead">
+          <h4>Restricted pairs</h4>
+          <p class="caption">Checked, then deliberately not used</p>
+        </div>
+        <div class="sg-table-wrap">
+          <table class="sg-table">
+            <thead>
+              <tr>
+                <th scope="col">Pair</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">AA normal</th>
+                <th scope="col">AA large</th>
+                <th scope="col">Decision</th>
+              </tr>
+            </thead>
+            <tbody data-contrast-table="restricted"></tbody>
+          </table>
+        </div>
+        <p class="caption" style="margin-top: var(--space-4);">Live audit: <span data-contrast-summary>calculating…</span></p>
+      </div>
+    </section>
+
+    <section class="sg-section" id="type">
+      <div class="container">
+        <header class="sg-section__head">
+          <p class="sg-section__index">02</p>
+          <h2 class="sg-section__title">Typography</h2>
+          <p class="sg-section__intro">Syne carries the big voice; DM Sans keeps the reading quiet; IBM Plex Mono handles numbers and labels. Caveat is reserved for a rare margin note.</p>
+        </header>
+
+        <div class="specimen-list">
+          <div class="specimen">
+            <p class="specimen__label">Display / Syne 800</p>
+            <div class="specimen__sample"><h1>Heading one</h1></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Heading 2 / Syne 700</p>
+            <div class="specimen__sample"><h2>Heading two</h2></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Heading 3 / Syne 700</p>
+            <div class="specimen__sample"><h3>Heading three</h3></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Heading 4 / Syne 700</p>
+            <div class="specimen__sample"><h4>Heading four</h4></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Heading 5 / Syne 700</p>
+            <div class="specimen__sample"><h5>Heading five</h5></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Heading 6 / DM Sans 500</p>
+            <div class="specimen__sample"><h6>Heading six</h6></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Lead / DM Sans 400</p>
+            <div class="specimen__sample"><p class="lead">A short lead paragraph sets the tone before the work begins.</p></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Body / DM Sans 400</p>
+            <div class="specimen__sample"><p>Body copy stays plain and generous. It should read comfortably at 375px, hold its rhythm at 768px, and not become a thin ribbon at 1440px. Links are underlined; emphasis is carried by scale and space, not extra colour.</p></div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Mono / IBM Plex Mono 400</p>
+            <div class="specimen__sample">
+              <p class="caption">Plate 01 · Digital / 2026</p>
+              <p class="numbered-label"><span class="numbered-label__number">01</span> Selected work</p>
+            </div>
+          </div>
+          <div class="specimen">
+            <p class="specimen__label">Hand / Caveat 500</p>
+            <div class="specimen__sample"><p class="hand-note">A note in the margin, used only when the work needs a human aside.</p></div>
+          </div>
+        </div>
+
+        <dl class="scale-list" aria-label="Fluid type scale">
+          <div class="scale-row"><dt>--text-display</dt><dd>clamp(2.25rem, 0.95rem + 5.5vw, 9rem)</dd></div>
+          <div class="scale-row"><dt>--text-4xl</dt><dd>clamp(1.85rem, 1.25rem + 3.4vw, 5.25rem)</dd></div>
+          <div class="scale-row"><dt>--text-3xl</dt><dd>clamp(1.75rem, 1.2rem + 2.4vw, 3.75rem)</dd></div>
+          <div class="scale-row"><dt>--text-xl</dt><dd>clamp(1.35rem, 1.15rem + 0.85vw, 1.75rem)</dd></div>
+          <div class="scale-row"><dt>--text-base</dt><dd>clamp(0.975rem, 0.93rem + 0.18vw, 1.075rem)</dd></div>
+          <div class="scale-row"><dt>--text-xs</dt><dd>clamp(0.6875rem, 0.67rem + 0.08vw, 0.75rem)</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="sg-section" id="buttons">
+      <div class="container">
+        <header class="sg-section__head">
+          <p class="sg-section__index">03</p>
+          <h2 class="sg-section__title">Buttons &amp; rules</h2>
+          <p class="sg-section__intro">Square corners, one-pixel borders, 44px minimum targets. The arrow button is a text action, not a boxed control. Focus is always visible.</p>
+        </header>
+
+        <div class="cluster sg-demo-row">
+          <button class="btn btn--primary" type="button">Primary action</button>
+          <button class="btn btn--secondary" type="button">Secondary action</button>
+          <a class="btn btn--arrow" href="#blocks">Arrow action</a>
+          <button class="btn btn--secondary" type="button" disabled>Disabled</button>
+        </div>
+
+        <div class="sg-focus-demo">
+          <span class="caption">Keyboard focus</span>
+          <a class="focus-sample" href="#buttons">Focus-visible sample</a>
+          <span class="caption">Tab through the page to test the real state.</span>
+        </div>
+
+        <div class="sg-rule-demo" aria-label="Rule weights">
+          <hr class="rule">
+          <hr class="rule rule--subtle">
+          <p class="caption">Ink rule / stone rule</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-blocks" id="blocks">
+      <div class="container sg-blocks__intro">
+        <header class="sg-section__head">
+          <p class="sg-section__index">04</p>
+          <h2 class="sg-section__title">Colour blocks</h2>
+          <p class="sg-section__intro">Big flat fields, no shadows, no texture. Product screens use at most two accents at once; this reference shows all four for inspection.</p>
+        </header>
+      </div>
+
+      <div class="color-block color-block--maroon">
+        <div class="container sg-block__inner">
+          <div>
+            <div class="sg-block__meta"><span class="caption">Accent 01 / Maroon</span><span class="stamp">Vol. 01</span></div>
+            <h3 class="sg-block__title">Big, flat, unapologetic.</h3>
+          </div>
+          <div>
+            <p class="sg-block__copy">White on maroon is 11.75:1. Large surfaces earn the colour; type stays quiet and the edge does the work.</p>
+            <a class="btn btn--secondary" href="#colour">Back to colour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-block color-block--vermilion">
+        <div class="container sg-block__inner">
+          <div>
+            <div class="sg-block__meta"><span class="caption">Accent 02 / Vermilion</span><span class="stamp">Vol. 02</span></div>
+            <h3 class="sg-block__title">Loud, but legible.</h3>
+          </div>
+          <div>
+            <p class="sg-block__copy">Black on vermilion is 5.23:1. Ink is 4.33:1 and fails normal text, so this block uses black for small copy.</p>
+            <a class="btn btn--secondary" href="#colour">Back to colour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-block color-block--cobalt">
+        <div class="container sg-block__inner">
+          <div>
+            <div class="sg-block__meta"><span class="caption">Accent 03 / Cobalt</span><span class="stamp">Vol. 03</span></div>
+            <h3 class="sg-block__title">A cold, clean interruption.</h3>
+          </div>
+          <div>
+            <p class="sg-block__copy">White on cobalt is 7.19:1. Use it for a single structural section, not as a second background for the whole page.</p>
+            <a class="btn btn--secondary" href="#colour">Back to colour</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="color-block color-block--butter">
+        <div class="container sg-block__inner">
+          <div>
+            <div class="sg-block__meta"><span class="caption">Accent 04 / Butter</span><span class="stamp">Vol. 04</span></div>
+            <h3 class="sg-block__title">A warm punctuation mark.</h3>
+          </div>
+          <div>
+            <p class="sg-block__copy">Ink on butter is 10.95:1. Keep it for highlights and small blocks; white on butter disappears.</p>
+            <a class="btn btn--secondary" href="#colour">Back to colour</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sg-section" id="components">
+      <div class="container">
+        <header class="sg-section__head">
+          <p class="sg-section__index">05</p>
+          <h2 class="sg-section__title">Components</h2>
+          <p class="sg-section__intro">Small, reusable pieces: the rotated stamp, mono captions, numbered labels, and the editorial project list.</p>
+        </header>
+
+        <div class="sg-component-grid">
+          <div class="sg-component">
+            <p class="caption">Stamp label</p>
+            <div class="sg-stamp-row">
+              <span class="stamp stamp--maroon">Vol. 01</span>
+              <span class="stamp">Sketchbook / 2026</span>
+              <span class="stamp stamp--alt">New</span>
+            </div>
+            <p class="caption">One-pixel border · rotated · uppercase mono</p>
+          </div>
+
+          <div class="sg-component">
+            <p class="caption">Captions &amp; numbered labels</p>
+            <div class="sg-caption-stack">
+              <p class="caption">Plate 01 · Digital / 2026</p>
+              <p class="numbered-label"><span class="numbered-label__number">01</span> Selected work</p>
+              <p class="numbered-label"><span class="numbered-label__number">02</span> Listening room</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sg-subhead">
+          <h3>Numbered project list</h3>
+          <p class="caption">Minimal editorial index</p>
+        </div>
+        <ol class="project-list sg-project-list">
+          <li>
+            <a class="project-row" href="#components">
+              <span class="project-row__num">01</span>
+              <span class="project-row__title">Project title</span>
+              <span class="project-row__meta">Digital painting · 2023</span>
+              <span class="project-row__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li>
+            <a class="project-row" href="#components">
+              <span class="project-row__num">02</span>
+              <span class="project-row__title">Project title</span>
+              <span class="project-row__meta">Paper sketch · 2023</span>
+              <span class="project-row__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li>
+            <a class="project-row" href="#components">
+              <span class="project-row__num">03</span>
+              <span class="project-row__title">Project title</span>
+              <span class="project-row__meta">Digital painting · 2025</span>
+              <span class="project-row__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li>
+            <a class="project-row" href="#components">
+              <span class="project-row__num">04</span>
+              <span class="project-row__title">Project title</span>
+              <span class="project-row__meta">Placeholder category · Year</span>
+              <span class="project-row__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sg-footer">
+    <div class="container sg-footer__inner">
+      <p class="caption">Phase 01 / Design foundation</p>
+      <p class="caption"><a href="../">Back to the sketchbook</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/styleguide.js" defer></script>
+</body>
+</html>
